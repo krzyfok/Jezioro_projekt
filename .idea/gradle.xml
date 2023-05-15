@@ -9,7 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Simulation1" />
             <option value="$PROJECT_DIR$/classes" />
+            <option value="$PROJECT_DIR$/classes/simulation" />
+            <option value="$PROJECT_DIR$/simulation" />
           </set>
         </option>
       </GradleProjectSettings>

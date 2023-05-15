@@ -1,3 +1,8 @@
 rootProject.name = 'Jezioro_projekt'
 include 'classes'
+include 'classes:simulation'
+findProject(':classes:simulation')?.name = 'simulation'
+include 'classes'
+include 'simulation'
+include 'Simulation1'
 
