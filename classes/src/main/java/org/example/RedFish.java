@@ -21,6 +21,7 @@ public class RedFish extends Fish{
         this.size = 20;
         this.health=20;
         this.power=10;
+        this.agility=40;
         this.goback = rand.nextBoolean();
         this.position(size);
 
