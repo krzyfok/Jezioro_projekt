@@ -20,15 +20,9 @@ public class RedFish extends Fish{
         this.speed = 10;
         this.size = 20;
         this.goback = rand.nextBoolean();
+        this.position(size);
 
         //tu na dole ustawiana jest pierwsza lokalizacja ryby, z uwzglednieniem warunku, zeby byla na planszy
-        do {
-            this.coX = rand.nextInt()%(Draw.size-2*Draw.border);
-        }while(coX <= Draw.border || coX >= Draw.size-2*Draw.border);
-
-        do {
-            this.coY = rand.nextInt()%(Draw.size-Draw.border);
-        }while(coY <= Draw.upBorder || coY >= Draw.size-2*Draw.border);
 
     }
 
@@ -37,7 +31,7 @@ public class RedFish extends Fish{
         g.setColor(Color.RED);
         for (RedFish fish : tablicaRyb) {
             g.fillOval(fish.coX, fish.coY, fish.size, fish.size);
-            super.swim(fish);
+            super.swim(fish, size);
         }
     }
 }

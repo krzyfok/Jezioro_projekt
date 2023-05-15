@@ -2,11 +2,13 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Draw extends JFrame{
-    public static int size = 500;
+    public static int size = 1000;
     public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
+    public static int downBorder=50;
 
     Draw() {                                               //konstruktor, ustawienie wielkosci okienka
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +22,8 @@ public class Draw extends JFrame{
         g.fillRect(0,upBorder,size,size);
         g.setColor(Color.CYAN);
         g.fillRect(0,0, size, upBorder);
+        g.setColor(Color.YELLOW);
+        g.fillRect(0,size-downBorder,size, downBorder);
     }
 
     @Override
@@ -38,8 +42,12 @@ public class Draw extends JFrame{
             Fisherman.lowienie(g);
             //innaryba.plywanie...
             //rybak.zrobcos...
-
-           // String z = scanner.nextLine();          //tutaj taki stop na razie, zeby animacja dzialala tylko gdy enter jest wcisniety, zeby nie przelecialo od razu
+            try {
+                TimeUnit.MILLISECONDS.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            // String z = scanner.nextLine();          //tutaj taki stop na razie, zeby animacja dzialala tylko gdy enter jest wcisniety, zeby nie przelecialo od razu
 
         }
 

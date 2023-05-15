@@ -12,7 +12,11 @@
             <option value="$PROJECT_DIR$/Simulation1" />
             <option value="$PROJECT_DIR$/classes" />
             <option value="$PROJECT_DIR$/classes/simulation" />
+            <option value="$PROJECT_DIR$/export-to-file" />
             <option value="$PROJECT_DIR$/simulation" />
+            <option value="$PROJECT_DIR$/unit-tests" />
+            <option value="$PROJECT_DIR$/unittests" />
+            <option value="$PROJECT_DIR$/unittests/exporttofile" />
           </set>
         </option>
       </GradleProjectSettings>

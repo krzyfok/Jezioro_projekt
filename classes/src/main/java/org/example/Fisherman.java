@@ -16,7 +16,7 @@ public class Fisherman {
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
     static int rodspeed = 2;             //do wedki dodac nowa klase? nw
     static int roddepth = Draw.upBorder;        //aktualna glebokosc wedki
-    static double rodrange = 15;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
+    static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     //predkosc lowienia, itd itp...
 
 
@@ -55,7 +55,7 @@ public class Fisherman {
 
             Random rand = new Random();         //"wylosowanie"glebokosci. mozna dodac metode, np. setGlebokosc czy cos
             do{
-                depth = rand.nextInt()%(Draw.size);
+                depth = (rand.nextInt(Draw.size-Draw.upBorder-Draw.downBorder))+Draw.upBorder;
             } while(depth<=Draw.upBorder+Draw.border || depth>=Draw.size-Draw.border);
 
         }
@@ -63,7 +63,7 @@ public class Fisherman {
     }
 
     static double odleglosc(double x, double y) {
-        return sqrt((x-y)*(x-y));
+        return sqrt(((x-coX)*(x-coX))+((y-roddepth)*(y-roddepth)));
     }
 
     public static void lowienie(Graphics g) {
@@ -85,7 +85,7 @@ public class Fisherman {
         //sprawdzanie czy ryba jest w poblizu, tez mozna dodac metode:
         //dodac opcje, ze jak przez jakis czas nie zlowi ryby to zaczyna lowic od nowa
         for(GreenFish fish : GreenFish.tablicaRyb) {
-            if(odleglosc(fish.coX, roddepth)<=rodrange  &&  odleglosc(fish.coX, coX)<=rodrange) {
+            if(odleglosc(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
                 System.out.println("Test, zlapana zielona");
                 stop=false;
@@ -93,7 +93,7 @@ public class Fisherman {
             }
         }
         for(RedFish fish : RedFish.tablicaRyb) {
-            if(odleglosc(fish.coX, roddepth)<=rodrange  &&  odleglosc(fish.coX, coX)<=rodrange) {
+            if(odleglosc(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
                 System.out.println("Test, zlapana czerwona");
                 stop=false;
