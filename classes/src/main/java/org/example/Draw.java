@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Draw extends JFrame{
-    public static int size = 1000;
+    public static int size = 800;
     public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
@@ -29,15 +29,17 @@ public class Draw extends JFrame{
     @Override
     public void paint(Graphics g) {                 //klasa do rysowania
         GreenFish green = new GreenFish();
-        RedFish red = new RedFish();
+       RedFish red = new RedFish();
+       Shark shark = new Shark();
         Scanner scanner = new Scanner(System.in);
         for(int i=0; i<1000; i++) {                 //na razie ustawilam ilosc klatek do 1000, zeby mozna bylo zobaczyc czy to dziala
 
             //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
             clean(g);
-
+            shark.swim(g, shark);
             green.swim(g);
             red.swim(g);
+
             Fisherman.plywanie(g);
             Fisherman.lowienie(g);
             //innaryba.plywanie...

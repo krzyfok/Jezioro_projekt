@@ -9,6 +9,9 @@ public abstract class Fish {
     protected int coY;
     protected int coX;
     protected int size;
+
+    protected int power;
+    protected int health;
     protected boolean goback;           //jeszcze nie wiem jak ogarnac jak to zrobic zeby ryby sie odbijaly od sciany, wiec na probe zrobilam im zmienna boolowska, ktora po uderzeniu w sciane sie zmienia i zmieniaja kierunek w metodzie plywania
 
     public  void position(int size)
