@@ -22,6 +22,7 @@ public class GreenFish extends Fish{
         this.goback = rand.nextBoolean();
         this.health=20;
         this.power=10;
+        this.agility=10;
         this.position(size);
 
 
