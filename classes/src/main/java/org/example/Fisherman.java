@@ -84,7 +84,7 @@ public class Fisherman {
 
         //sprawdzanie czy ryba jest w poblizu, tez mozna dodac metode:
         //dodac opcje, ze jak przez jakis czas nie zlowi ryby to zaczyna lowic od nowa
-        for(GreenFish fish : GreenFish.tablicaRyb) {
+      /*  for(GreenFish fish : GreenFish.tablicaRyb) {
             if(distance(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
                 System.out.println("Test, zlapana zielona");
@@ -99,6 +99,6 @@ public class Fisherman {
                 stop=false;
                 roddepth= Map.upBorder;
             }
-        }
+        }*/
     }
 }

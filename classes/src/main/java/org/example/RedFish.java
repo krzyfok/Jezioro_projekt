@@ -34,7 +34,38 @@ public class RedFish extends Fish{
         g.setColor(Color.RED);
         for (RedFish fish : tablicaRyb) {
             g.fillOval(fish.coX, fish.coY, fish.size, fish.size);
-            super.swim(fish, size);
+            if(fish.coX >= Map.border && fish.coX <= Map.size- Map.border-size) {
+                if(fish.gobackx==true)
+                    fish.coX += fish.speed;
+                else
+                    fish.coX -= fish.speed;
+            }
+            else {                                              //tutaj ryba zawraca gdy spotka krawedz
+                if(fish.gobackx==true) {
+                    fish.gobackx=false;
+                    fish.coX -= fish.speed;
+                }
+                else {
+                    fish.gobackx=true;
+                    fish.coX += fish.speed;
+                }
+            }
+            if(fish.coY >= Map.upBorder && fish.coY <= Map.size- Map.downBorder-size) {
+                if(fish.gobacky==true)
+                    fish.coY += fish.speed/2;
+                else
+                    fish.coY -= fish.speed/2;
+            }
+            else {                                              //tutaj ryba zawraca gdy spotka krawedz
+                if(fish.gobacky==true) {
+                    fish.gobacky=false;
+                    fish.coY -= fish.speed/2;
+                }
+                else {
+                    fish.gobacky=true;
+                    fish.coY += fish.speed/2;
+                }
+            }
         }
     }
 }
