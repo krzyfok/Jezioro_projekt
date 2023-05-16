@@ -4,8 +4,8 @@ import java.util.Random;
 import static java.lang.Math.sqrt;
 public class Fisherman {
     static int speed = 3;
-    static int coX = Draw.size/2;
-    static int coY = Draw.upBorder-10;    //odejmuje wysokosc lodki
+    static int coX = Map.size/2;
+    static int coY = Map.upBorder-10;    //odejmuje wysokosc lodki
 
 
     static boolean goback = true;
@@ -15,7 +15,7 @@ public class Fisherman {
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
     static int rodspeed = 2;             //do wedki dodac nowa klase? nw
-    static int roddepth = Draw.upBorder;        //aktualna glebokosc wedki
+    static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     //predkosc lowienia, itd itp...
 
@@ -31,7 +31,7 @@ public class Fisherman {
             return;
 
         //poruszanie sie:
-        if(coX >= Draw.border && coX <= Draw.size-2*Draw.border-50) {      //odejmuje dlugosc lodki
+        if(coX >= Map.border && coX <= Map.size-2* Map.border-50) {      //odejmuje dlugosc lodki
             if(goback==true)
                 coX += speed;
             else
@@ -55,8 +55,8 @@ public class Fisherman {
 
             Random rand = new Random();         //"wylosowanie"glebokosci. mozna dodac metode, np. setGlebokosc czy cos
             do{
-                depth = (rand.nextInt(Draw.size-Draw.upBorder-Draw.downBorder))+Draw.upBorder;
-            } while(depth<=Draw.upBorder+Draw.border || depth>=Draw.size-Draw.border);
+                depth = (rand.nextInt(Map.size- Map.upBorder- Map.downBorder))+ Map.upBorder;
+            } while(depth<= Map.upBorder+ Map.border || depth>= Map.size- Map.border);
 
         }
 
@@ -76,7 +76,7 @@ public class Fisherman {
 
         //rysowanie wedki:
         g.setColor(Color.BLACK);
-        g.drawLine(coX, Draw.upBorder,coX, roddepth);
+        g.drawLine(coX, Map.upBorder,coX, roddepth);
 
         //jesli nie jest w pelni zanurzone to ryby nie beda sie lapac
         if(roddepth<depth)
@@ -89,7 +89,7 @@ public class Fisherman {
                 //usunRybe();
                 System.out.println("Test, zlapana zielona");
                 stop=false;
-                roddepth=Draw.upBorder;
+                roddepth= Map.upBorder;
             }
         }
         for(RedFish fish : RedFish.tablicaRyb) {
@@ -97,7 +97,7 @@ public class Fisherman {
                 //usunRybe();
                 System.out.println("Test, zlapana czerwona");
                 stop=false;
-                roddepth=Draw.upBorder;
+                roddepth= Map.upBorder;
             }
         }
     }

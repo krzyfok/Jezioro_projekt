@@ -4,13 +4,13 @@ import java.awt.*;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Draw extends JFrame{
-    public static int size = 800;
+public class Map extends JFrame{
+    public static int size = 600;
     public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
 
-    Draw() {                                               //konstruktor, ustawienie wielkosci okienka
+    Map() {                                               //konstruktor, ustawienie wielkosci okienka
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(size, size);
         this.setVisible(true);

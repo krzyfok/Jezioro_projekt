@@ -1,6 +1,4 @@
 package org.example;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Fish {
@@ -13,8 +11,8 @@ public abstract class Fish {
     protected int power;
     protected int agility;
     protected int health;
-    protected boolean goback;           //jeszcze nie wiem jak ogarnac jak to zrobic zeby ryby sie odbijaly od sciany, wiec na probe zrobilam im zmienna boolowska, ktora po uderzeniu w sciane sie zmienia i zmieniaja kierunek w metodzie plywania
-
+    protected boolean gobackx;           //jeszcze nie wiem jak ogarnac jak to zrobic zeby ryby sie odbijaly od sciany, wiec na probe zrobilam im zmienna boolowska, ktora po uderzeniu w sciane sie zmienia i zmieniaja kierunek w metodzie plywania
+    protected boolean gobacky;
     public  void position(int size)
     {
         //tu na dole ustawiana jest pierwsza lokalizacja ryby, z uwzglednieniem warunku, zeby byla na planszy
@@ -22,11 +20,11 @@ public abstract class Fish {
        // do {
        //     this.coX = rand.nextInt()%(Draw.size-Draw.border);
       //  }while(coX <= Draw.border || coX >= Draw.size-2*Draw.border);
-        this.coX=((rand.nextInt(Draw.size-2*Draw.border-size))+Draw.border+(size/2));
+        this.coX=((rand.nextInt(Map.size-2* Map.border-size))+ Map.border);
        // do {
        //     this.coY = rand.nextInt()%(Draw.size-Draw.border);
       //  }while(coY <= Draw.upBorder || coY >= Draw.size-2*Draw.border);
-        this.coY=((rand.nextInt(Draw.size-Draw.upBorder-Draw.downBorder-size))+Draw.upBorder+(size/2));
+        this.coY=((rand.nextInt(Map.size- Map.upBorder- Map.downBorder-size))+ Map.upBorder);
 
     }
     public static void swim( Fish fish, int size){        //tu musi byc to g do rysowania. W tej metodzie od razu rysuje te ryby(na razie kulki), mozna to podzielic na wiecej metod. Np oddzielna do rysowania i oddzielna do zmieniania wspolrzednych
@@ -35,20 +33,36 @@ public abstract class Fish {
 
 
         //zmienienie wspolrzednych ryby (poruszenie sie ryby)
-        if(fish.coX >= Draw.border && fish.coX <= Draw.size-Draw.border-size) {
-            if(fish.goback==true)
+        if(fish.coX >= Map.border && fish.coX <= Map.size- Map.border-size) {
+            if(fish.gobackx==true)
                 fish.coX += fish.speed;
             else
                 fish.coX -= fish.speed;
         }
         else {                                              //tutaj ryba zawraca gdy spotka krawedz
-            if(fish.goback==true) {
-                fish.goback=false;
+            if(fish.gobackx==true) {
+                fish.gobackx=false;
                 fish.coX -= fish.speed;
             }
             else {
-                fish.goback=true;
+                fish.gobackx=true;
                 fish.coX += fish.speed;
+            }
+        }
+        if(fish.coY >= Map.upBorder && fish.coY <= Map.size- Map.downBorder-size) {
+            if(fish.gobacky==true)
+                fish.coY += fish.speed/2;
+            else
+                fish.coY -= fish.speed/2;
+        }
+        else {                                              //tutaj ryba zawraca gdy spotka krawedz
+            if(fish.gobacky==true) {
+                fish.gobacky=false;
+                fish.coY -= fish.speed/2;
+            }
+            else {
+                fish.gobacky=true;
+                fish.coY += fish.speed/2;
             }
         }
 

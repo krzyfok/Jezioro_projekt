@@ -8,7 +8,7 @@ public class Shark extends Fish{
 
         this.speed = 5;
         this.size = 150;
-        this.goback = rand.nextBoolean();
+        this.gobackx = rand.nextBoolean();
         this.health=200;
         this.power=100;
         this.position(size);

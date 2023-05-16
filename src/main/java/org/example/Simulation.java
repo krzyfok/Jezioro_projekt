@@ -1,6 +1,6 @@
 package org.example;
 
-public class Main {
+public class Simulation {
 
 
 
@@ -8,7 +8,7 @@ public class Main {
 
             GreenFish rybki1 = new GreenFish(30);
             RedFish rybki2 = new RedFish(10);
-            Draw symulacja = new Draw();
+            Map symulacja = new Map();
         }
 
 

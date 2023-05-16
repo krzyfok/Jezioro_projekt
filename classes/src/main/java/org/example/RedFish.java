@@ -22,7 +22,7 @@ public class RedFish extends Fish{
         this.health=20;
         this.power=10;
         this.agility=40;
-        this.goback = rand.nextBoolean();
+        this.gobackx = rand.nextBoolean();
         this.position(size);
 
         //tu na dole ustawiana jest pierwsza lokalizacja ryby, z uwzglednieniem warunku, zeby byla na planszy
