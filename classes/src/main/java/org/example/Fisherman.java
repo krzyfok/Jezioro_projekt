@@ -21,7 +21,7 @@ public class Fisherman {
 
 
 
-    public static void plywanie(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
+    public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
@@ -62,11 +62,11 @@ public class Fisherman {
 
     }
 
-    static double odleglosc(double x, double y) {
+    static double distance(double x, double y) {
         return sqrt(((x-coX)*(x-coX))+((y-roddepth)*(y-roddepth)));
     }
 
-    public static void lowienie(Graphics g) {
+    public static void fishing(Graphics g) {
         if(stop==false)
             return;
 
@@ -85,7 +85,7 @@ public class Fisherman {
         //sprawdzanie czy ryba jest w poblizu, tez mozna dodac metode:
         //dodac opcje, ze jak przez jakis czas nie zlowi ryby to zaczyna lowic od nowa
         for(GreenFish fish : GreenFish.tablicaRyb) {
-            if(odleglosc(fish.coX, fish.coY)<=rodrange ) {
+            if(distance(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
                 System.out.println("Test, zlapana zielona");
                 stop=false;
@@ -93,7 +93,7 @@ public class Fisherman {
             }
         }
         for(RedFish fish : RedFish.tablicaRyb) {
-            if(odleglosc(fish.coX, fish.coY)<=rodrange ) {
+            if(distance(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
                 System.out.println("Test, zlapana czerwona");
                 stop=false;

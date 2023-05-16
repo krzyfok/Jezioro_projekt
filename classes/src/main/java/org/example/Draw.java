@@ -40,8 +40,8 @@ public class Draw extends JFrame{
             green.swim(g);
             red.swim(g);
 
-            Fisherman.plywanie(g);
-            Fisherman.lowienie(g);
+            Fisherman.swim(g);
+            Fisherman.fishing(g);
             //innaryba.plywanie...
             //rybak.zrobcos...
             try {

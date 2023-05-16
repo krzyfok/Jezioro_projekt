@@ -35,7 +35,7 @@ public abstract class Fish {
 
 
         //zmienienie wspolrzednych ryby (poruszenie sie ryby)
-        if(fish.coX >= Draw.border && fish.coX <= Draw.size-Draw.border) {
+        if(fish.coX >= Draw.border && fish.coX <= Draw.size-Draw.border-size) {
             if(fish.goback==true)
                 fish.coX += fish.speed;
             else

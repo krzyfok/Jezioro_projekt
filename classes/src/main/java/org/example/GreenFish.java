@@ -6,10 +6,10 @@ public class GreenFish extends Fish{
     static ArrayList<GreenFish> tablicaRyb;       //przechowuje wszystkie rybki tej odmiany
 
 
-    GreenFish(int iloscRyb) {
+    GreenFish(int fishnumber) {
         tablicaRyb = new ArrayList();               //tutaj utworzenie rybek w ilosci zadanej w mainie
 
-        for(int i=0; i<iloscRyb; i++)
+        for(int i=0; i<fishnumber; i++)
             tablicaRyb.add(new GreenFish());  //odwolanie do konstruktora "pojedynczej ryby", ktora jest nizej
 
     }

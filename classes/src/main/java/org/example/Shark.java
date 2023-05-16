@@ -6,7 +6,7 @@ public class Shark extends Fish{
     Shark() {  //"konstruktor rekina"
         Random rand = new Random();
 
-        this.speed = 3;
+        this.speed = 5;
         this.size = 150;
         this.goback = rand.nextBoolean();
         this.health=200;

@@ -6,10 +6,10 @@ public class RedFish extends Fish{
     static ArrayList<RedFish> tablicaRyb;       //przechowuje wszystkie rybki tej odmiany
 
 
-    RedFish(int iloscRyb) {
+    RedFish(int fishnumber) {
         tablicaRyb = new ArrayList();               //tutaj utworzenie rybek w ilosci zadanej w mainie
 
-        for(int i=0; i<iloscRyb; i++)
+        for(int i=0; i<fishnumber; i++)
             tablicaRyb.add(new RedFish());  //odwolanie do konstruktora "pojedynczej ryby", ktora jest nizej
 
     }
