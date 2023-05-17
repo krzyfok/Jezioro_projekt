@@ -1,7 +1,8 @@
 package org.example;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Map extends JFrame{
@@ -9,6 +10,7 @@ public class Map extends JFrame{
     public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
+    static ArrayList<Fish> tableOfFish;      //przeniesione tutaj, zeby dzialalo jako jedna arraylista dla wszystkich rodzajow ryb
 
     Map() {                                               //konstruktor, ustawienie wielkosci okienka
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,30 +28,40 @@ public class Map extends JFrame{
         g.fillRect(0,size-downBorder,size, downBorder);
     }
 
+    public static void setFish(int green, int red) {
+        tableOfFish = new ArrayList();
+        tableOfFish.add(new Shark());
+        for(int i=0; i<red; i++)
+            tableOfFish.add(new RedFish());
+        for(int i=0; i<green; i++)
+            tableOfFish.add(new GreenFish());
+    }
+
     @Override
     public void paint(Graphics g) {                 //klasa do rysowania
-        GreenFish green = new GreenFish();
-       RedFish red = new RedFish();
-       Shark shark = new Shark();
-        Scanner scanner = new Scanner(System.in);
+
+
         for(int i=0; i<1000; i++) {                 //na razie ustawilam ilosc klatek do 1000, zeby mozna bylo zobaczyc czy to dziala
 
             //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
             clean(g);
-            shark.swim(g, shark);
-            green.swim(g);
-            red.swim(g);
+
+
+            //plywanie ryb:
+            for(int j=0; j<tableOfFish.size(); j++)
+                tableOfFish.get(j).swim(g);
 
             Fisherman.swim(g);
             Fisherman.fishing(g);
             //innaryba.plywanie...
             //rybak.zrobcos...
+
             try {
                 TimeUnit.MILLISECONDS.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            // String z = scanner.nextLine();          //tutaj taki stop na razie, zeby animacja dzialala tylko gdy enter jest wcisniety, zeby nie przelecialo od razu
+
 
         }
 
