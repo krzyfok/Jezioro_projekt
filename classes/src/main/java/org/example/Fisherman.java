@@ -84,11 +84,16 @@ public class Fisherman {
             return;
 
         //sprawdzanie czy ryba jest w poblizu, na razie nie sprawdza rodzaju ryby:
-
         for(Fish fish: Map.tableOfFish) {
             if(distance(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
-                System.out.println("Test, zlapana jakas");
+                if(fish instanceof GreenFish)
+                    System.out.println("Test, zlapana zielona");
+                else if(fish instanceof RedFish)
+                    System.out.println("Test, zlapana czerwona");
+                else if(fish instanceof Shark)
+                    System.out.println("DZIWNE, zlapany rekin lol");
+
                 stop=false;
                 roddepth=Map.upBorder;
             }
