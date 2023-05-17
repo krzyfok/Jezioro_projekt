@@ -1,4 +1,5 @@
 package org.example;
+
 import java.awt.*;
 import java.util.Random;
 import static java.lang.Math.sqrt;
@@ -14,14 +15,14 @@ public class Fisherman {
 
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    static int rodspeed = 2;             //do wedki dodac nowa klase? nw
+    static int rodspeed = 2;
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     //predkosc lowienia, itd itp...
 
 
 
-    public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
+    public static void swim(Graphics g) {
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
@@ -43,7 +44,7 @@ public class Fisherman {
                 coX -= speed;
             }
             else {
-               goback  =true;
+                goback  =true;
                 coX += speed;
             }
         }
@@ -72,7 +73,7 @@ public class Fisherman {
 
         //zanurzanie:
         if(roddepth<depth)
-           roddepth+=rodspeed;
+            roddepth+=rodspeed;
 
         //rysowanie wedki:
         g.setColor(Color.BLACK);
@@ -82,23 +83,16 @@ public class Fisherman {
         if(roddepth<depth)
             return;
 
-        //sprawdzanie czy ryba jest w poblizu, tez mozna dodac metode:
-        //dodac opcje, ze jak przez jakis czas nie zlowi ryby to zaczyna lowic od nowa
-      /*  for(GreenFish fish : GreenFish.tablicaRyb) {
+        //sprawdzanie czy ryba jest w poblizu, na razie nie sprawdza rodzaju ryby:
+
+        for(Fish fish: Map.tableOfFish) {
             if(distance(fish.coX, fish.coY)<=rodrange ) {
                 //usunRybe();
-                System.out.println("Test, zlapana zielona");
+                System.out.println("Test, zlapana jakas");
                 stop=false;
-                roddepth= Map.upBorder;
+                roddepth=Map.upBorder;
             }
         }
-        for(RedFish fish : RedFish.tablicaRyb) {
-            if(distance(fish.coX, fish.coY)<=rodrange ) {
-                //usunRybe();
-                System.out.println("Test, zlapana czerwona");
-                stop=false;
-                roddepth= Map.upBorder;
-            }
-        }*/
     }
 }
+
