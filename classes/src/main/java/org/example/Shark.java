@@ -1,56 +1,68 @@
 package org.example;
+
+import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-public class Shark extends Fish{
-    Shark() {  //"konstruktor rekina"
-        Random rand = new Random();
+public class Map extends JFrame{
+    public static int size = 600;
+    public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
+    public static int upBorder = 100;   //powierzchnia
+    public static int downBorder=50;
+    static ArrayList<Fish> tableOfFish;      //przeniesione tutaj, zeby dzialalo jako jedna arraylista dla wszystkich rodzajow ryb
 
-        this.speed = 5;
-        this.size = 150;
-        this.gobackx = rand.nextBoolean();
-        this.health=200;
-        this.power=100;
-        this.position(size);
-
+    Map() {                                               //konstruktor, ustawienie wielkosci okienka
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(size, size);
+        this.setVisible(true);
+        setLayout(null);
     }
 
-    public void swim(Graphics g,Fish shark) {
-        g.setColor(Color.GRAY);
+    public void clean(Graphics g) {
+        g.setColor(Color.BLUE);
+        g.fillRect(0,upBorder,size,size);
+        g.setColor(Color.CYAN);
+        g.fillRect(0,0, size, upBorder);
+        g.setColor(Color.YELLOW);
+        g.fillRect(0,size-downBorder,size, downBorder);
+    }
 
-        g.fillOval(coX, coY,size,size);
-        //zmienienie wspolrzednych ryby (poruszenie sie ryby)
-        if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
-            if(this.gobackx==true)
-                this.coX += this.speed;
-            else
-                this.coX -= this.speed;
-        }
-        else {                                              //tutaj ryba zawraca gdy spotka krawedz
-            if(this.gobackx==true) {
-                this.gobackx=false;
-                this.coX -= this.speed;
+    public static void setFish(int green, int red) {
+        tableOfFish = new ArrayList();
+        tableOfFish.add(new Shark());
+        for(int i=0; i<red; i++)
+            tableOfFish.add(new RedFish());
+        for(int i=0; i<green; i++)
+            tableOfFish.add(new GreenFish());
+    }
+
+    @Override
+    public void paint(Graphics g) {                 //klasa do rysowania
+
+
+        for(int i=0; i<1000; i++) {                 //na razie ustawilam ilosc klatek do 1000, zeby mozna bylo zobaczyc czy to dziala
+
+            //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
+            clean(g);
+
+
+            //plywanie ryb:
+            for(int j=0; j<tableOfFish.size(); j++)
+                tableOfFish.get(j).swim(g);
+
+            Fisherman.swim(g);
+            Fisherman.fishing(g);
+            //innaryba.plywanie...
+            //rybak.zrobcos...
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-            else {
-                this.gobackx=true;
-                this.coX += this.speed;
-            }
-        }
-        if(this.coY >= Map.upBorder && this.coY <= Map.size- Map.downBorder-size) {
-            if(this.gobacky==true)
-                this.coY += this.speed/2;
-            else
-                this.coY -= this.speed/2;
-        }
-        else {                                              //tutaj ryba zawraca gdy spotka krawedz
-            if(this.gobacky==true) {
-                this.gobacky=false;
-                this.coY -= this.speed/2;
-            }
-            else {
-                this.gobacky=true;
-                this.coY += this.speed/2;
-            }
+
+
         }
 
     }
