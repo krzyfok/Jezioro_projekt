@@ -4,12 +4,11 @@ public class Simulation {
 
 
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            GreenFish rybki1 = new GreenFish(30);
-            RedFish rybki2 = new RedFish(10);
-            Map symulacja = new Map();
-        }
+        Map.setFish(20,15);
+        Map symulacja = new Map();
+    }
 
 
 
