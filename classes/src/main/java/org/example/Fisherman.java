@@ -5,8 +5,8 @@ import java.util.Random;
 import static java.lang.Math.sqrt;
 public class Fisherman {
     static int speed = 3;
-    static int coX = Map.size/2;
-    static int coY = Map.upBorder-10;    //odejmuje wysokosc lodki
+    static int coX = Map.size / 2;
+    static int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
 
 
     static boolean goback = true;
@@ -15,89 +15,87 @@ public class Fisherman {
 
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    static int rodspeed = 2;
+    static int rodspeed = 2;             //do wedki dodac nowa klase? nw
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
+    
     //predkosc lowienia, itd itp...
 
-
-
-    public static void swim(Graphics g) {
+    public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
         g.fillRect(coX, coY, 50, 10);
 
-        if(stop==true)             //jesli jest zatrzymany to sie nie porusza
+        if (stop == true)             //jesli jest zatrzymany to sie nie porusza
             return;
 
         //poruszanie sie:
-        if(coX >= Map.border && coX <= Map.size-2* Map.border-50) {      //odejmuje dlugosc lodki
-            if(goback==true)
+        if (coX >= Map.border && coX <= Map.size - 2 * Map.border - 50) {      //odejmuje dlugosc lodki
+            if (goback == true)
                 coX += speed;
             else
                 coX -= speed;
-        }
-        else {                                              //tutaj rybak zawraca gdy spotka krawedz
-            if(goback==true) {
-                goback=false;
+        } else {                                              //tutaj rybak zawraca gdy spotka krawedz
+            if (goback == true) {
+                goback = false;
                 coX -= speed;
-            }
-            else {
-                goback  =true;
+            } else {
+                goback = true;
                 coX += speed;
             }
         }
         stopcountdown++;                       //zwiekszanie licznika, gdy rybak sie porusza
 
-        if(stopcountdown>=70) {                //zatrzymuje sie co 70 klatek
-            stopcountdown=0;
-            stop=true;
+        if (stopcountdown >= 70) {                //zatrzymuje sie co 70 klatek
+            stopcountdown = 0;
+            stop = true;
 
             Random rand = new Random();         //"wylosowanie"glebokosci. mozna dodac metode, np. setGlebokosc czy cos
-            do{
-                depth = (rand.nextInt(Map.size- Map.upBorder- Map.downBorder))+ Map.upBorder;
-            } while(depth<= Map.upBorder+ Map.border || depth>= Map.size- Map.border);
+            do {
+                depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder)) + Map.upBorder;
+            } while (depth <= Map.upBorder + Map.border || depth >= Map.size - Map.border);
 
         }
 
     }
 
     static double distance(double x, double y) {
-        return sqrt(((x-coX)*(x-coX))+((y-roddepth)*(y-roddepth)));
+        return sqrt(((x - coX) * (x - coX)) + ((y - roddepth) * (y - roddepth)));
     }
 
     public static void fishing(Graphics g) {
-        if(stop==false)
+        if (stop == false)
             return;
 
         //zanurzanie:
-        if(roddepth<depth)
-            roddepth+=rodspeed;
+        if (roddepth < depth)
+            roddepth += rodspeed;
 
         //rysowanie wedki:
         g.setColor(Color.BLACK);
-        g.drawLine(coX, Map.upBorder,coX, roddepth);
+        g.drawLine(coX, Map.upBorder, coX, roddepth);
 
         //jesli nie jest w pelni zanurzone to ryby nie beda sie lapac
-        if(roddepth<depth)
+        if (roddepth < depth)
             return;
 
-        //sprawdzanie czy ryba jest w poblizu, na razie nie sprawdza rodzaju ryby:
-        for(Fish fish: Map.tableOfFish) {
-            if(distance(fish.coX, fish.coY)<=rodrange ) {
-                //usunRybe();
-                if(fish instanceof GreenFish)
+        for (Fish fish : Map.tableOfFish) {
+            if (distance(fish.coX, fish.coY) <= rodrange) {
+                if (fish instanceof GreenFish)
                     System.out.println("Test, zlapana zielona");
-                else if(fish instanceof RedFish)
+                else if (fish instanceof RedFish)
                     System.out.println("Test, zlapana czerwona");
-                else if(fish instanceof Shark)
+                else if (fish instanceof Shark)
                     System.out.println("DZIWNE, zlapany rekin lol");
 
-                stop=false;
-                roddepth=Map.upBorder;
+                stop = false;
+                roddepth = Map.upBorder;
+                
+                //usuwanie ryby:
+                Map.tableOfFish.remove(fish);
+                return;
             }
         }
     }
 }
-
