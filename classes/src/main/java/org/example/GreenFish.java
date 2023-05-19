@@ -15,6 +15,7 @@ public class GreenFish extends Fish{
         this.power=10;
         this.agility=10;
         this.position(size);
+        this.dobreed=rand.nextInt()%50;
     }
 
     public void swim(Graphics g) {
@@ -56,6 +57,7 @@ public class GreenFish extends Fish{
                 }
             }
 
+        this.dobreed++;
 
     }
 }

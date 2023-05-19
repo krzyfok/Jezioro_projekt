@@ -50,6 +50,8 @@ public class Map extends JFrame{
             //plywanie ryb:
             for(int j=0; j<tableOfFish.size(); j++)
                 tableOfFish.get(j).swim(g);
+            for(int j=0; j<tableOfFish.size(); j++)
+            {tableOfFish.get(j).reproduct();}
 
             Fisherman.swim(g);
             Fisherman.fishing(g);

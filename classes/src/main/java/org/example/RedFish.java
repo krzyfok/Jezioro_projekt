@@ -14,6 +14,7 @@ public class RedFish extends Fish{
         this.agility=40;
         this.gobackx = rand.nextBoolean();
         this.position(size);
+        this.dobreed=rand.nextInt()%50;
     }
 
 
@@ -54,6 +55,7 @@ public class RedFish extends Fish{
                     this.coY += this.speed/2;
                 }
             }
+        this.dobreed++;
         }
 
 }
