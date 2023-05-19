@@ -1,22 +1,20 @@
 package org.example;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 
 public class Shark extends Fish{
 
-protected int hunger;
+    protected int hunger;
     Shark() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
         this.speedX = 5;
         this.size = 100;
         this.gobackx = rand.nextBoolean();
-        this.health=20;
-        this.power=10;
+        this.health=20000;
+        this.power=5000;
         this.agility=10;
         this.hunger=100;
         this.position(size);
@@ -61,6 +59,6 @@ protected int hunger;
             }
         }
 
-
+        this.hunger++;
     }
 }
