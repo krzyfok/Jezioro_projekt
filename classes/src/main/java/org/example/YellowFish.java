@@ -3,7 +3,6 @@ package org.example;
 import java.awt.*;
 import java.util.Random;
 
-
 public class YellowFish extends Fish{
 
 
@@ -14,12 +13,12 @@ public class YellowFish extends Fish{
         this.speedY=10;
         this.size = 5;
         this.gobackx = rand.nextBoolean();
-        this.health=20;
-        this.power=10;
+        this.health=50;
+        this.power=50;
         this.agility=10;
         this.position(size);
         this.dobreed=rand.nextInt()%50;
-
+        this.hunger=rand.nextInt()%50;
     }
 
     public void swim(Graphics g) {
@@ -29,7 +28,7 @@ public class YellowFish extends Fish{
 
         g.fillOval(this.coX, this.coY, this.size, this.size);
         if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
-                this.coX += ((rand.nextInt(this.speedX*2))-10);
+            this.coX += ((rand.nextInt(this.speedX*2))-10);
         }
         else if(this.coX <= Map.border )
         {
@@ -41,7 +40,7 @@ public class YellowFish extends Fish{
         }
         if(this.coY >= Map.upBorder+speedY && this.coY <= Map.size- Map.downBorder-speedY) {
 
-                this.coY += ((rand.nextInt(this.speedY*2))-10);
+            this.coY += ((rand.nextInt(this.speedY*2))-10);
 
         }
         else if(this.coY <= Map.upBorder+speedY )
@@ -54,6 +53,7 @@ public class YellowFish extends Fish{
         }
 
         this.dobreed++;
+        this.hunger++;
 
     }
 }
