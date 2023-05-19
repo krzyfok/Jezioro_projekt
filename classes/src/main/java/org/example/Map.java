@@ -48,12 +48,26 @@ public class Map extends JFrame{
             //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
             clean(g);
 
-
             //plywanie ryb:
             for(int j=0; j<tableOfFish.size(); j++)
                 tableOfFish.get(j).swim(g);
+
+            //rozmnazanie ryb:
             for(int j=0; j<tableOfFish.size(); j++)
-            {tableOfFish.get(j).reproduct();}
+                for(int k=0; k<tableOfFish.size(); k++)
+                    if(j!=k && tableOfFish.get(j).getClass()==tableOfFish.get(k).getClass())
+                        tableOfFish.get(j).reproduct(tableOfFish.get(k));
+
+            //atak ryb:
+            for(int j=0; j<tableOfFish.size(); j++)
+                for(int k=0; k<tableOfFish.size(); k++)
+                    if(j!=k && tableOfFish.get(j).getClass()!=tableOfFish.get(k).getClass())
+                        tableOfFish.get(j).attack(tableOfFish.get(k));
+
+            //smierc ryb:
+            for(int j=0; j<tableOfFish.size(); j++)
+                tableOfFish.get(j).die();
+
 
             Fisherman.swim(g);
             Fisherman.fishing(g);
