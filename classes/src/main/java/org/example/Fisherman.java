@@ -17,7 +17,7 @@ public class Fisherman {
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
     static int rodspeed = 10;             //do wedki dodac nowa klase? nw
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
-    static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
+    static double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     
     //predkosc lowienia, itd itp...
 
