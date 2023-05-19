@@ -69,6 +69,9 @@ public abstract class Fish {
     }
 
     public void attack(Fish fish2) {
+        if(this.hunger<=50 || fish2.hunger<=50)
+            return;
+        
         if (distance(this, fish2) <= breedrange) {      //tu na razie jest breedrange. mozna potem ustawic jakis attackrange
             if (this.power > fish2.power) {
                 fish2.health -= this.power / 2;     //traci jakby polowe hp, bo podczas wywolania tej metody w Map, bedzie ona wywolana 2 razy dla tego samego zestawu ryb. wiec lacznie straci 2 razy po pol
