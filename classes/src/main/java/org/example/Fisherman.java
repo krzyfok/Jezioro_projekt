@@ -15,7 +15,7 @@ public class Fisherman {
 
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    static int rodspeed = 2;             //do wedki dodac nowa klase? nw
+    static int rodspeed = 10;             //do wedki dodac nowa klase? nw
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 25;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     
@@ -81,13 +81,23 @@ public class Fisherman {
             return;
 
         for (Fish fish : Map.tableOfFish) {
-            if (distance(fish.coX, fish.coY) <= rodrange) {
+            if (distance(fish.coX, fish.coY) <= rodrange ) {
                 if (fish instanceof GreenFish)
-                    System.out.println("Test, zlapana zielona");
+                { System.out.println("Test, zlapana zielona");
+
+                }
                 else if (fish instanceof RedFish)
-                    System.out.println("Test, zlapana czerwona");
+                { System.out.println("Test, zlapana czerwona");
+
+                }
+                else if (fish instanceof YellowFish)
+                {System.out.println("Test, zlapana żółta");
+
+                }
                 else if (fish instanceof Shark)
-                    System.out.println("DZIWNE, zlapany rekin lol");
+                {System.out.println("DZIWNE, zlapany rekin lol");
+
+                }
 
                 stop = false;
                 roddepth = Map.upBorder;

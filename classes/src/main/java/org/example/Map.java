@@ -28,13 +28,15 @@ public class Map extends JFrame{
         g.fillRect(0,size-downBorder,size, downBorder);
     }
 
-    public static void setFish(int green, int red) {
+    public static void setFish(int green, int red, int yellow) {
         tableOfFish = new ArrayList();
         tableOfFish.add(new Shark());
         for(int i=0; i<red; i++)
             tableOfFish.add(new RedFish());
         for(int i=0; i<green; i++)
             tableOfFish.add(new GreenFish());
+        for(int i=0; i<yellow; i++)
+            tableOfFish.add(new YellowFish());
     }
 
     @Override

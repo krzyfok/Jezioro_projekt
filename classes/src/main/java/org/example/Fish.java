@@ -5,7 +5,8 @@ import java.util.Random;
 
 public abstract class Fish {
 
-    protected int speed;
+    protected int speedX;
+    protected int speedY;
     protected int coY;
     protected int coX;
     protected int size;
@@ -44,6 +45,8 @@ public abstract class Fish {
                 if(Map.tableOfFish.get(i).dobreed<=50 || Map.tableOfFish.get(j).dobreed<=50)
                     continue;
 
+
+
                 //sprawdzenie czy dystans jest mniejszy niz range i odmiany rybek sa te same:
                 if (distance(Map.tableOfFish.get(i), Map.tableOfFish.get(j)) <= breedrange) {
                     if (Map.tableOfFish.get(i).getClass() == Map.tableOfFish.get(j).getClass()) {
@@ -52,12 +55,15 @@ public abstract class Fish {
                             Map.tableOfFish.add(new GreenFish());
                         else if (Map.tableOfFish.get(i) instanceof RedFish)
                             Map.tableOfFish.add(new RedFish());
+                        else if (Map.tableOfFish.get(i) instanceof YellowFish)
+                            Map.tableOfFish.add(new YellowFish());
 
 
 
                         //ustawienie wspolrzednych dziecka ryb:
-                        Map.tableOfFish.get(Map.tableOfFish.size()-1).coX = 500;
-                        Map.tableOfFish.get(Map.tableOfFish.size()-1).coY = 500;
+                     //   Map.tableOfFish.get(Map.tableOfFish.size()-1).coX = 500;
+                       // Map.tableOfFish.get(Map.tableOfFish.size()-1).coY = 500;
+                        Map.tableOfFish.get(Map.tableOfFish.size()-1).position(this.size);
                         Map.tableOfFish.get(Map.tableOfFish.size()-1).gobackx = !Map.tableOfFish.get(i).gobackx;     //zawraca? Zeby nie plynely razem bo beda sie rozmnazac ze soba
                         Map.tableOfFish.get(Map.tableOfFish.size()-1).gobacky = !Map.tableOfFish.get(i).gobacky;
 

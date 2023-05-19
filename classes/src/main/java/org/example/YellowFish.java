@@ -1,31 +1,27 @@
 package org.example;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+public class YellowFish extends Fish{
 
-public class Shark extends Fish{
 
-protected int hunger;
-    Shark() {  //"konstruktor pojedynczej ryby"
+    YellowFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
-        this.speedX = 5;
-        this.size = 100;
+        this.speedX = 10;
+        this.size = 5;
         this.gobackx = rand.nextBoolean();
         this.health=20;
         this.power=10;
         this.agility=10;
-        this.hunger=100;
         this.position(size);
+        this.dobreed=rand.nextInt()%50;
     }
 
     public void swim(Graphics g) {
 
 
-        g.setColor(Color.GRAY);
+        g.setColor(Color.yellow);
 
         g.fillOval(this.coX, this.coY, this.size, this.size);
         if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
@@ -61,6 +57,7 @@ protected int hunger;
             }
         }
 
+        this.dobreed++;
 
     }
 }
