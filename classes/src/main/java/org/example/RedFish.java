@@ -10,12 +10,13 @@ public class RedFish extends Fish{
         this.speedX = 5;
         this.speedY=10;
         this.size = 20;
-        this.health=20;
-        this.power=10;
+        this.health=500;
+        this.power=100;
         this.agility=40;
         this.gobackx = rand.nextBoolean();
         this.position(size);
         this.dobreed=rand.nextInt()%50;
+        this.hunger=rand.nextInt()%50;
     }
 
 
@@ -24,40 +25,41 @@ public class RedFish extends Fish{
 
         g.setColor(Color.RED);
 
-            g.fillOval(this.coX, this.coY, this.size, this.size);
-            if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
-                if(this.gobackx==true)
-                    this.coX += this.speedX;
-                else
-                    this.coX -= this.speedX;
-            }
-            else {                                              //tutaj ryba zawraca gdy spotka krawedz
-                if(this.gobackx==true) {
-                    this.gobackx=false;
-                    this.coX -= this.speedX;
-                }
-                else {
-                    this.gobackx=true;
-                    this.coX += this.speedX;
-                }
-            }
-            if(this.coY >= Map.upBorder+speedY && this.coY <= Map.size- Map.downBorder-speedY*2) {
-                if(this.gobacky==true)
-                    this.coY += this.speedY;
-                else
-                    this.coY -= this.speedY;
-            }
-            else {                                              //tutaj ryba zawraca gdy spotka krawedz
-                if(this.gobacky==true) {
-                    this.gobacky=false;
-                    this.coY -= this.speedY;
-                }
-                else {
-                    this.gobacky=true;
-                    this.coY += this.speedY;
-                }
-            }
-        this.dobreed++;
+        g.fillOval(this.coX, this.coY, this.size, this.size);
+        if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
+            if(this.gobackx==true)
+                this.coX += this.speedX;
+            else
+                this.coX -= this.speedX;
         }
+        else {                                              //tutaj ryba zawraca gdy spotka krawedz
+            if(this.gobackx==true) {
+                this.gobackx=false;
+                this.coX -= this.speedX;
+            }
+            else {
+                this.gobackx=true;
+                this.coX += this.speedX;
+            }
+        }
+        if(this.coY >= Map.upBorder+speedY && this.coY <= Map.size- Map.downBorder-speedY*2) {
+            if(this.gobacky==true)
+                this.coY += this.speedY;
+            else
+                this.coY -= this.speedY;
+        }
+        else {                                              //tutaj ryba zawraca gdy spotka krawedz
+            if(this.gobacky==true) {
+                this.gobacky=false;
+                this.coY -= this.speedY;
+            }
+            else {
+                this.gobacky=true;
+                this.coY += this.speedY;
+            }
+        }
+        this.dobreed++;
+        this.hunger++;
+    }
 
 }
