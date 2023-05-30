@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.Random;
 
 
-public class Shark extends Fish{
+public class Shark extends Fish {
 
     protected int hunger;
     Shark() {  //"konstruktor pojedynczej ryby"

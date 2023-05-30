@@ -3,7 +3,7 @@ package org.example;
 import java.awt.*;
 import java.util.Random;
 
-public class YellowFish extends Fish{
+public class YellowFish extends Fish {
 
 
     YellowFish() {  //"konstruktor pojedynczej ryby"
@@ -15,7 +15,7 @@ public class YellowFish extends Fish{
         this.gobackx = rand.nextBoolean();
         this.health=50;
         this.power=50;
-        this.agility=10;
+        this.agility=50;
         this.position(size);
         this.dobreed=rand.nextInt()%50;
         this.hunger=rand.nextInt()%50;

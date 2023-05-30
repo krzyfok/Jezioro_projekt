@@ -3,20 +3,20 @@ package org.example;
 
 import java.awt.*;
 import java.util.Random;
-public class GreenFish extends Fish{
+public class GreenFish extends Fish {
 
 
     GreenFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
         this.speedX = 8;
-        this.speedY=5;
+        this.speedY=3;
         this.size = 15;
         this.gobackx = rand.nextBoolean();
         this.gobacky = rand.nextBoolean();
         this.health=70;
         this.power=30;
-        this.agility=10;
+        this.agility=30;
         this.position(size);
         this.dobreed=rand.nextInt()%50;
     }

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 import static java.lang.Math.sqrt;
 public class Fisherman {
-    static int speed = 3;
+    static int speed = 6;
     static int coX = Map.size / 2;
     static int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
 
@@ -15,7 +15,7 @@ public class Fisherman {
 
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    static int rodspeed = 10;             //do wedki dodac nowa klase? nw
+    static int rodspeed = 20;             //do wedki dodac nowa klase? nw
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
     
@@ -54,7 +54,7 @@ public class Fisherman {
             Random rand = new Random();         //"wylosowanie"glebokosci. mozna dodac metode, np. setGlebokosc czy cos
             do {
                 depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder)) + Map.upBorder;
-            } while (depth <= Map.upBorder + Map.border || depth >= Map.size - Map.border);
+            } while (depth <= Map.upBorder + Map.border && depth >= Map.size - Map.downBorder-Map.border);
 
         }
 
@@ -65,6 +65,7 @@ public class Fisherman {
     }
 
     public static void fishing(Graphics g) {
+        Random rand = new Random();
         if (stop == false)
             return;
 
@@ -82,21 +83,20 @@ public class Fisherman {
 
         for (Fish fish : Map.tableOfFish) {
             if (distance(fish.coX, fish.coY) <= rodrange ) {
-                if (fish instanceof GreenFish)
-                { System.out.println("Test, zlapana zielona");
+                if(rand.nextInt()%100>fish.agility) {
+                    if (fish instanceof GreenFish) {
+                        System.out.println("Test, zlapana zielona");
 
-                }
-                else if (fish instanceof RedFish)
-                { System.out.println("Test, zlapana czerwona");
+                    } else if (fish instanceof RedFish) {
+                        System.out.println("Test, zlapana czerwona");
 
-                }
-                else if (fish instanceof YellowFish)
-                {System.out.println("Test, zlapana żółta");
+                    } else if (fish instanceof YellowFish) {
+                        System.out.println("Test, zlapana żółta");
 
-                }
-                else if (fish instanceof Shark)
-                {System.out.println("DZIWNE, zlapany rekin lol");
+                    } else if (fish instanceof Shark) {
+                        System.out.println("DZIWNE, zlapany rekin lol");
 
+                    }
                 }
 
                 stop = false;

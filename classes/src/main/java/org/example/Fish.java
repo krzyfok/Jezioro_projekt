@@ -6,7 +6,7 @@ package org.example;
 import java.awt.*;
 import java.util.Random;
 
-public abstract class Fish {
+public abstract class Fish implements Swim{
 
 
     protected int speedX;
@@ -47,7 +47,7 @@ public abstract class Fish {
     }
 
 
-    public void swim(Graphics g){}
+
 
     public static double distance(Fish fish1, Fish fish2) {
         return (Math.sqrt((fish1.coX+fish1.size/2-fish2.coX-fish2.size/2)*(fish1.coX+fish1.size/2-fish2.coX-fish2.size/2)+(fish1.coY+fish1.size/2-fish2.coY-fish2.size/2)*(fish1.coY+fish1.size/2-fish2.coY-fish2.size/2)));

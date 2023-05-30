@@ -7,7 +7,7 @@ package org.example;
 
 import java.awt.*;
 import java.util.Random;
-public class RedFish extends Fish{
+public class RedFish extends Fish {
 
     RedFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
