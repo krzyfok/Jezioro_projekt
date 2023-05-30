@@ -1,5 +1,7 @@
 package org.example;
 
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -40,10 +42,10 @@ public class Map extends JFrame{
     }
 
     @Override
-    public void paint(Graphics g) {                 //klasa do rysowania
+    public void paint(Graphics g) {
 
 
-        for(int i=0; i<1000; i++) {                 //na razie ustawilam ilosc klatek do 1000, zeby mozna bylo zobaczyc czy to dziala
+        for(int i=0; i<1500; i++) {
 
             //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
             clean(g);
@@ -53,10 +55,13 @@ public class Map extends JFrame{
                 tableOfFish.get(j).swim(g);
 
             //rozmnazanie ryb:
-            for(int j=0; j<tableOfFish.size(); j++)
+            for(int j=0; j<tableOfFish.size(); j++) {
+                if(tableOfFish.get(j) instanceof YellowFish)            //zolte rozmnazaja sie same ze soba
+                    tableOfFish.get(j).reproduct(tableOfFish.get(j));
                 for(int k=0; k<tableOfFish.size(); k++)
                     if(j!=k && tableOfFish.get(j).getClass()==tableOfFish.get(k).getClass())
                         tableOfFish.get(j).reproduct(tableOfFish.get(k));
+            }
 
             //atak ryb:
             for(int j=0; j<tableOfFish.size(); j++)
@@ -66,13 +71,13 @@ public class Map extends JFrame{
 
             //smierc ryb:
             for(int j=0; j<tableOfFish.size(); j++)
-                tableOfFish.get(j).die();
+                if(tableOfFish.get(j).die()==1)
+                    j--;
 
 
             Fisherman.swim(g);
             Fisherman.fishing(g);
-            //innaryba.plywanie...
-            //rybak.zrobcos...
+
 
             try {
                 TimeUnit.MILLISECONDS.sleep(50);
