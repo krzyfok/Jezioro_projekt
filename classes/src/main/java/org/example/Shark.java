@@ -1,5 +1,11 @@
 package org.example;
 
+
+
+
+
+
+
 import java.awt.*;
 import java.util.Random;
 
@@ -10,14 +16,16 @@ public class Shark extends Fish{
     Shark() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
-        this.speedX = 5;
+        this.speedX = 3;
         this.size = 100;
         this.gobackx = rand.nextBoolean();
         this.health=20000;
-        this.power=5000;
+        this.power=1050;
         this.agility=10;
         this.hunger=100;
+        this.attackrange=50;
         this.position(size);
+
     }
 
     public void swim(Graphics g) {
@@ -26,39 +34,55 @@ public class Shark extends Fish{
         g.setColor(Color.GRAY);
 
         g.fillOval(this.coX, this.coY, this.size, this.size);
-        if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
-            if(this.gobackx==true)
-                this.coX += this.speedX;
-            else
-                this.coX -= this.speedX;
-        }
-        else {                                              //tutaj ryba zawraca gdy spotka krawedz
-            if(this.gobackx==true) {
+
+
+        //poruszanie sie w osi X
+        if(this.gobackx==true) {
+            if((this.coX-this.speedX)<=(Map.border+this.size))
                 this.gobackx=false;
-                this.coX -= this.speedX;
-            }
-            else {
-                this.gobackx=true;
-                this.coX += this.speedX;
-            }
-        }
-        if(this.coY >= Map.upBorder && this.coY <= Map.size- Map.downBorder-size) {
-            if(this.gobacky==true)
-                this.coY += this.speedX/2;
             else
-                this.coY -= this.speedX/2;
+                this.coX-=this.speedX;
         }
-        else {                                              //tutaj ryba zawraca gdy spotka krawedz
-            if(this.gobacky==true) {
-                this.gobacky=false;
-                this.coY -= this.speedX/2;
-            }
-            else {
-                this.gobacky=true;
-                this.coY += this.speedX/2;
-            }
+        else if(this.gobackx==false) {
+            if((this.coX+this.speedX)>=(Map.size-Map.border-this.size))
+                this.gobackx=true;
+            else
+                this.coX+=this.speedX;
         }
 
-        this.hunger++;
+        //poruszanie sie w osi Y
+        if(this.gobacky==true) {
+            if((this.coY-this.speedX/2)<=(Map.border+this.size+Map.upBorder))
+                this.gobacky=false;
+            else
+                this.coY-=this.speedX/2;
+        }
+        else if(this.gobacky==false) {
+            if((this.coY+this.speedX/2)>=(Map.size-Map.border-Map.downBorder-this.size))
+                this.gobacky=true;
+            else
+                this.coY+=this.speedX/2;
+        }
+
+
+        this.hunger+=10;
     }
+
+
+    @Override
+    public void attack(Fish fish) {
+        if (distance(this, fish) <= this.attackrange) {
+
+            hunger+=1;
+            if(this.hunger<=50)
+                return;
+
+            fish.health -= this.power;
+            fish.die();
+            this.hunger=0;
+        }
+
+    }
+
 }
+
