@@ -1,5 +1,6 @@
 package org.example;
 
+
 import java.awt.*;
 import java.util.Random;
 public class GreenFish extends Fish{
@@ -8,12 +9,13 @@ public class GreenFish extends Fish{
     GreenFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
-        this.speedX = 5;
-        this.speedY=10;
-        this.size = 10;
+        this.speedX = 8;
+        this.speedY=5;
+        this.size = 15;
         this.gobackx = rand.nextBoolean();
-        this.health=20;
-        this.power=10;
+        this.gobacky = rand.nextBoolean();
+        this.health=70;
+        this.power=30;
         this.agility=10;
         this.position(size);
         this.dobreed=rand.nextInt()%50;
@@ -22,40 +24,44 @@ public class GreenFish extends Fish{
     public void swim(Graphics g) {
 
 
-            g.setColor(Color.GREEN);
+        g.setColor(Color.GREEN);
+        g.fillOval(this.coX, this.coY, this.size, this.size);
 
-            g.fillOval(this.coX, this.coY, this.size, this.size);
-            if (this.coX >= Map.border && this.coX <= Map.size - Map.border - size) {
-                if (this.gobackx == true)
-                    this.coX += this.speedX;
-                else
-                    this.coX -= this.speedX;
-            } else {                                              //tutaj ryba zawraca gdy spotka krawedz
-                if (this.gobackx == true) {
-                    this.gobackx = false;
-                    this.coX -= this.speedX;
-                } else {
-                    this.gobackx = true;
-                    this.coX += this.speedX;
-                }
-            }
-            if (this.coY >= Map.upBorder+speedY && this.coY <= Map.size - Map.downBorder - speedY*2) {
-                if (this.gobacky == true)
-                    this.coY += this.speedY;
-                else
-                    this.coY -= this.speedY;
-            } else {                                              //tutaj ryba zawraca gdy spotka krawedz
-                if (this.gobacky == true) {
-                    this.gobacky = false;
-                    this.coY -= this.speedY;
-                } else {
-                    this.gobacky = true;
-                    this.coY += this.speedY;
-                }
-            }
 
-            this.dobreed++;
+        //poruszanie sie w osi X
+        if(this.gobackx==true) {
+            if((this.coX-this.speedX)<=(Map.border+this.size))
+                this.gobackx=false;
+            else
+                this.coX-=this.speedX;
         }
+        else if(this.gobackx==false) {
+            if((this.coX+this.speedX)>=(Map.size-Map.border-this.size))
+                this.gobackx=true;
+            else
+                this.coX+=this.speedX;
+        }
+
+        //poruszanie sie w osi Y
+        if(this.gobacky==true) {
+            if((this.coY-this.speedY)<=(Map.border+this.size+Map.upBorder))
+                this.gobacky=false;
+            else
+                this.coY-=this.speedY;
+        }
+        else if(this.gobacky==false) {
+            if((this.coY+this.speedY)>=(Map.size-Map.downBorder-this.size))
+                this.gobacky=true;
+            else
+                this.coY+=this.speedY;
+        }
+
+
+        if(this.numberOfFish()<15)
+            this.dobreed+=50;
+        this.dobreed+=5;
+        this.hunger++;
+    }
 
 
 }
