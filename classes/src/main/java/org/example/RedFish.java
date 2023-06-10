@@ -1,14 +1,14 @@
 package org.example;
 
 
-
-
-
-
 import java.awt.*;
 import java.util.Random;
 public class RedFish extends Fish {
 
+    private int extinction = 10;
+    private int breedValue = 5;
+    private int goBack = 15;    //im mniejsze tym czesciej zawraca (w pionie)
+    
     public RedFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
@@ -61,12 +61,12 @@ public class RedFish extends Fish {
         }
 
         //randomowe zawracanie
-        if(rand.nextInt()%15==0)
+        if(rand.nextInt()%goBack==0)
             this.gobacky = !this.gobacky;
 
 
-        if(this.numberOfFish()<10)
-            this.dobreed+=50;
+        if(this.numberOfFish()<extinction)
+            this.dobreed+=breedValue;
         this.dobreed++;
         this.hunger++;
     }
