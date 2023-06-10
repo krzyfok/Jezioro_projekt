@@ -1,8 +1,5 @@
 package org.example;
 
-
-
-
 import java.awt.*;
 import java.util.Random;
 
@@ -25,6 +22,11 @@ public abstract class Fish implements Swim{
     protected double hunger;
     protected double dobreed;      //czy moga sie rozmnazac
 
+    private int maxOfIndividual = 45;
+    private int minBreed = 30;
+    private int breedArea = 30;
+    private int minHunger = 10;
+
 
 
     public  void position(int size) {
@@ -33,18 +35,7 @@ public abstract class Fish implements Swim{
         Random rand = new Random();
         this.coX=((rand.nextInt(Map.size-2* Map.border-2*size))+ Map.border+size);
         this.coY=((rand.nextInt(Map.size- Map.upBorder- Map.downBorder-2*size-2*Map.border))+ Map.upBorder+size+Map.border);
-
-
-         //korekta polozenia ryby
-       /* if(this.coY<=Map.upBorder+Map.border) {
-            this.coY+=2*this.size;
-            this.gobacky=true;
-        }
-        if(this.coY>=Map.size-Map.downBorder-Map.border-this.size) {
-            this.coY-=2*this.size;
-            this.gobacky=false;
-        }*/
-    }
+}
 
 
 
@@ -58,9 +49,9 @@ public abstract class Fish implements Swim{
 
 
         //sprawdzenie czy moga sie rozmnazac
-        if(this.dobreed<=30 || fish2.dobreed<=30)
+        if(this.dobreed<=minBreed || fish2.dobreed<=minBreed)
             return;
-        if(this.numberOfFish()>=45)      //ograniczenie do 45 osobnikow danej odmiany
+        if(this.numberOfFish()>=maxOfIndividual)      //ograniczenie osobnikow danej odmiany
             return;
 
 
@@ -79,8 +70,8 @@ public abstract class Fish implements Swim{
             //ustawienie wspolrzednych ryb dziecka
 
             if(!(this instanceof YellowFish)) {         //zolta ryba generuje sie losowo na mapie, bo inaczej laguje
-                Map.tableOfFish.get(Map.tableOfFish.size() - 1).coX = this.coX - rand.nextInt() % 30;
-                Map.tableOfFish.get(Map.tableOfFish.size() - 1).coY = this.coY - rand.nextInt() % 30;
+                Map.tableOfFish.get(Map.tableOfFish.size() - 1).coX = this.coX - rand.nextInt() % breedArea;
+                Map.tableOfFish.get(Map.tableOfFish.size() - 1).coY = this.coY - rand.nextInt() % breedArea;
 
 
                 //korekta polozenia ryby
@@ -103,7 +94,7 @@ public abstract class Fish implements Swim{
 
     public void attack(Fish fish2) {
 
-        if(this.hunger<10)
+        if(this.hunger<minHunger)
             return;
         if (distance(this, fish2) <= this.attackrange)
             if (this.power > fish2.power) {
@@ -129,6 +120,7 @@ public abstract class Fish implements Swim{
 
         return number;
     }
+
     public int give_coX()
     {
         return coX;
