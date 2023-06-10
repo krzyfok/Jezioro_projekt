@@ -13,7 +13,7 @@ import java.util.Random;
 public class Shark extends Fish {
 
     protected int hunger;
-    Shark() {  //"konstruktor pojedynczej ryby"
+    public Shark() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
         this.speedX = 3;

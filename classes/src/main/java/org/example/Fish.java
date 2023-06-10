@@ -11,9 +11,9 @@ public abstract class Fish implements Swim{
 
     protected int speedX;
     protected int speedY;
-    protected int coY;
-    protected int coX;
-    protected int size;
+    public int coY;
+     public int coX;
+   public int size;
 
     protected int power;
     protected int agility;
@@ -32,18 +32,18 @@ public abstract class Fish implements Swim{
         //tu na dole ustawiana jest pierwsza lokalizacja ryby, z uwzglednieniem warunku, zeby byla na planszy
         Random rand = new Random();
         this.coX=((rand.nextInt(Map.size-2* Map.border-2*size))+ Map.border+size);
-        this.coY=((rand.nextInt(Map.size- Map.upBorder- Map.downBorder-2*size-2*Map.border))+ Map.upBorder+2*size+Map.border);
+        this.coY=((rand.nextInt(Map.size- Map.upBorder- Map.downBorder-2*size-2*Map.border))+ Map.upBorder+size+Map.border);
 
 
          //korekta polozenia ryby
-        if(this.coY<=Map.upBorder+Map.border) {
+       /* if(this.coY<=Map.upBorder+Map.border) {
             this.coY+=2*this.size;
             this.gobacky=true;
         }
         if(this.coY>=Map.size-Map.downBorder-Map.border-this.size) {
             this.coY-=2*this.size;
             this.gobacky=false;
-        }
+        }*/
     }
 
 

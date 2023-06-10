@@ -6,7 +6,7 @@ import java.util.Random;
 public class GreenFish extends Fish {
 
 
-    GreenFish() {  //"konstruktor pojedynczej ryby"
+    public GreenFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
         this.speedX = 8;

@@ -8,5 +8,6 @@ public class Simulation {
 
         Map.setFish(20,10,10);
         Map symulacja = new Map();
+
     }
 }

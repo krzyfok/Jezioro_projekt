@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Map extends JFrame{
     public static int size = 600;
-    public static int border = 20;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
+    public static int border = 10;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
     static ArrayList<Fish> tableOfFish;      //przeniesione tutaj, zeby dzialalo jako jedna arraylista dla wszystkich rodzajow ryb

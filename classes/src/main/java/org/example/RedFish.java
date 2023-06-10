@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Random;
 public class RedFish extends Fish {
 
-    RedFish() {  //"konstruktor pojedynczej ryby"
+    public RedFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
         this.speedX = 5;
