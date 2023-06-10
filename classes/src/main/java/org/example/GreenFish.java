@@ -5,6 +5,8 @@ import java.awt.*;
 import java.util.Random;
 public class GreenFish extends Fish {
 
+    private int extinction = 15;
+    private int breedValue = 5;
 
     public GreenFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
@@ -57,9 +59,9 @@ public class GreenFish extends Fish {
         }
 
 
-        if(this.numberOfFish()<15)
-            this.dobreed+=50;
-        this.dobreed+=5;
+        if(this.numberOfFish()<extinction)
+            this.dobreed+=breedValue*10;
+        this.dobreed+=breedValue;
         this.hunger++;
     }
 
