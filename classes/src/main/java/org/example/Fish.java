@@ -11,9 +11,9 @@ public abstract class Fish implements Swim{
 
     protected int speedX;
     protected int speedY;
-    public int coY;
-     public int coX;
-   public int size;
+    protected int coY;
+    protected int coX;
+    protected int size;
 
     protected int power;
     protected int agility;
@@ -129,4 +129,17 @@ public abstract class Fish implements Swim{
 
         return number;
     }
+    public int give_coX()
+    {
+        return coX;
+    }
+    public int give_coY()
+    {
+        return coY;
+    }
+    public int give_size()
+    {
+        return size;
+    }
+
 }

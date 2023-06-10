@@ -22,7 +22,7 @@ public class UnitTest{
     {
       Fish fish= new RedFish();
 
-        Assertions.assertTrue(postion(fish.coX, fish.coY, fish.size));
+        Assertions.assertTrue(postion(fish.give_coX(), fish.give_coY(), fish.give_size()));
 
     }
 
