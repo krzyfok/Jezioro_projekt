@@ -1,5 +1,6 @@
 package org.example;
 
+
 import java.awt.*;
 import java.util.Random;
 import static java.lang.Math.sqrt;
@@ -7,31 +8,32 @@ public class Fisherman {
     static int speed = 6;
     static int coX = Map.size / 2;
     static int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
-
+    static int size = 10;
 
     static boolean goback = true;
     static boolean stop = false;
     static int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc. potem mozna to zrobic randomowo
-
+    static int maxcountdown = 70;
 
     static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
     static int rodspeed = 20;             //do wedki dodac nowa klase? nw
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
-    
-    //predkosc lowienia, itd itp...
 
+    
+
+    
     public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
-        g.fillRect(coX, coY, 50, 10);
+        g.fillRect(coX, coY, size*5, size);
 
         if (stop == true)             //jesli jest zatrzymany to sie nie porusza
             return;
 
         //poruszanie sie:
-        if (coX >= Map.border && coX <= Map.size - 2 * Map.border - 50) {      //odejmuje dlugosc lodki
+        if (coX >= Map.border && coX <= Map.size - 2 * Map.border - size*5) {      //odejmuje dlugosc lodki
             if (goback == true)
                 coX += speed;
             else
@@ -47,11 +49,11 @@ public class Fisherman {
         }
         stopcountdown++;                       //zwiekszanie licznika, gdy rybak sie porusza
 
-        if (stopcountdown >= 70) {                //zatrzymuje sie co 70 klatek
+        if (stopcountdown >= maxcountdown) {                //zatrzymuje sie co x klatek
             stopcountdown = 0;
             stop = true;
 
-            Random rand = new Random();         //"wylosowanie"glebokosci. mozna dodac metode, np. setGlebokosc czy cos
+            Random rand = new Random();         //wylosowanie glebokosci, na ktora zanurzy sie wedka
             do {
                 depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder)) + Map.upBorder;
             } while (depth <= Map.upBorder + Map.border && depth >= Map.size - Map.downBorder-Map.border);
@@ -101,7 +103,7 @@ public class Fisherman {
 
                 stop = false;
                 roddepth = Map.upBorder;
-                
+
                 //usuwanie ryby:
                 Map.tableOfFish.remove(fish);
                 return;
