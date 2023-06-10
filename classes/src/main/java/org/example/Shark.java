@@ -1,18 +1,13 @@
 package org.example;
 
 
-
-
-
-
-
 import java.awt.*;
 import java.util.Random;
 
 
 public class Shark extends Fish {
 
-    protected int hunger;
+    private int minHunger;
     public Shark() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
@@ -74,7 +69,7 @@ public class Shark extends Fish {
         if (distance(this, fish) <= this.attackrange) {
 
             hunger+=1;
-            if(this.hunger<=50)
+            if(this.hunger<=minHunger)
                 return;
 
             fish.health -= this.power;
