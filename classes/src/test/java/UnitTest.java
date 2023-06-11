@@ -17,7 +17,7 @@ public class UnitTest{
         else return false;
     }
     static public double distance(Fish fish1, Fish fish2) {
-        return (Math.sqrt((fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)*(fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)+(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_coY()/2)*(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_size()/2)));
+        return (Math.sqrt((fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)*(fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)+(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_size()/2)*(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_size()/2)));
     }
 
 
