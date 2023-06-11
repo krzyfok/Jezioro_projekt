@@ -24,7 +24,7 @@ public class RedFish extends Fish {
         this.attackrange = 20;
         this.hunger=rand.nextInt()%50;
     }
-    public RedFish(int coX, int coY, int hunger, int health)
+    public RedFish(int coX, int coY, int hunger, int health, int aglility)
     {
         Random rand = new Random();
 
@@ -33,7 +33,7 @@ public class RedFish extends Fish {
         this.size = 20;
         this.health=health;
         this.power=100;
-        this.agility=40;
+        this.agility=aglility;
         this.gobackx = rand.nextBoolean();
         this.coX=coX;
         this.coY=coY;

@@ -7,6 +7,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.lang.Math.sqrt;
+
 
 public class UnitTest{
     Random rand = new Random();
@@ -35,7 +37,7 @@ public class UnitTest{
     {
 
         Fish green= new GreenFish(rand.nextInt(40), rand.nextInt(40),70);
-        Fish red = new RedFish(rand.nextInt(40), rand.nextInt(40), 50,100);
+        Fish red = new RedFish(rand.nextInt(40), rand.nextInt(40), 50,100,40);
         red.attack(green);
         if(distance(green,red)<=red.give_attackrange())
         {
@@ -56,9 +58,9 @@ public class UnitTest{
         int expected;
         if(health==1) expected=0;
         else expected=1;
-        //Fish fish= new RedFish(0,0,0, health);
 
-        table.add(new RedFish(0,0,0, health));
+
+        table.add(new RedFish(0,0,0, health,40));
         Assertions.assertEquals(expected,table.get(0).die(table));
 
 
@@ -67,4 +69,9 @@ public class UnitTest{
 
 
 
-}
+    }
+
+
+
+
+

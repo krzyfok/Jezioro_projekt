@@ -134,7 +134,7 @@ public abstract class Fish implements Swim{
     {
         return size;
     }
-    public double give_attackrange()
+    public int give_attackrange()
     {
         return attackrange;
     }

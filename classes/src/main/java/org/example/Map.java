@@ -4,14 +4,19 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
 
 public class Map extends JFrame{
     public static int size = 600;
     public static int border = 10;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
+    public static int time;
     static ArrayList<Fish> tableOfFish;      //przeniesione tutaj, zeby dzialalo jako jedna arraylista dla wszystkich rodzajow ryb
 
     Map() {                                               //konstruktor, ustawienie wielkosci okienka
@@ -30,7 +35,8 @@ public class Map extends JFrame{
         g.fillRect(0,size-downBorder,size, downBorder);
     }
 
-    public static void setFish(int green, int red, int yellow) {
+
+    public static void setFish(int green, int red, int yellow, int time_) {
         tableOfFish = new ArrayList();
         tableOfFish.add(new Shark());
         for(int i=0; i<red; i++)
@@ -39,13 +45,49 @@ public class Map extends JFrame{
             tableOfFish.add(new GreenFish());
         for(int i=0; i<yellow; i++)
             tableOfFish.add(new YellowFish());
+        time=time_*20;
     }
+    public static void data_export()
+    {
+        int red=0, green=0 , yellow=0;
+        for (Fish fish : tableOfFish) {
+
+            if (fish instanceof GreenFish) {
+                green++;
+
+            } else if (fish instanceof RedFish) {
+                red++;
+
+            } else if (fish instanceof YellowFish) {
+                yellow++;
+            }
+        }
+
+
+
+            File myObj = new File("data.txt");
+             try{
+        PrintWriter save = new PrintWriter("data.txt");
+        save.println("CZAS TRWANIA SYMULACJI: "+ time/20+" SEKUND");
+        save.println("RYB CZERWONYCH: "+ red);
+        save.println("RYB ZIELONYCH: "+ green);
+        save.println("RYB ZOLTYCH: "+yellow);
+        save.close();
+    }catch (Exception e)
+             {
+
+             }
+
+
+    }
+
 
     @Override
     public void paint(Graphics g) {
 
 
-        for(int i=0; i<1500; i++) {
+
+        for(int i=0; i<time; i++) {
 
             //rysuje jeziorko (i czysci namalowane ryby z poprzedniej klatki)
             clean(g);
@@ -76,7 +118,7 @@ public class Map extends JFrame{
 
 
             Fisherman.swim(g);
-            Fisherman.fishing(g);
+            Fisherman.fishing(g, Map.tableOfFish);
 
 
             try {
@@ -87,6 +129,7 @@ public class Map extends JFrame{
 
 
         }
+        data_export();
 
     }
 }

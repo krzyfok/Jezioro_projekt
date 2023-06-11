@@ -2,6 +2,7 @@ package org.example;
 
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.sqrt;
 public class Fisherman {
@@ -20,7 +21,13 @@ public class Fisherman {
     static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
     static double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
 
-    
+    public Fisherman(int depthrod, int cox)
+    {
+        roddepth=depthrod;
+        depth=depthrod;
+        coX=cox;
+    }
+
 
     
     public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
@@ -66,7 +73,7 @@ public class Fisherman {
         return sqrt(((x - coX) * (x - coX)) + ((y - roddepth) * (y - roddepth)));
     }
 
-    public static void fishing(Graphics g) {
+    public static void fishing(Graphics g, ArrayList<Fish> table) {
         Random rand = new Random();
         if (stop == false)
             return;
@@ -83,7 +90,7 @@ public class Fisherman {
         if (roddepth < depth)
             return;
 
-        for (Fish fish : Map.tableOfFish) {
+        for (Fish fish : table) {
             if (distance(fish.coX, fish.coY) <= rodrange ) {
                 if(rand.nextInt()%100>fish.agility) {
                     if (fish instanceof GreenFish) {
@@ -105,7 +112,7 @@ public class Fisherman {
                 roddepth = Map.upBorder;
 
                 //usuwanie ryby:
-                Map.tableOfFish.remove(fish);
+                table.remove(fish);
                 return;
             }
         }
