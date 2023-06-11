@@ -24,6 +24,24 @@ public class RedFish extends Fish {
         this.attackrange = 20;
         this.hunger=rand.nextInt()%50;
     }
+    public RedFish(int coX, int coY, int hunger, int health)
+    {
+        Random rand = new Random();
+
+        this.speedX = 5;
+        this.speedY=5;
+        this.size = 20;
+        this.health=health;
+        this.power=100;
+        this.agility=40;
+        this.gobackx = rand.nextBoolean();
+        this.coX=coX;
+        this.coY=coY;
+        this.dobreed=rand.nextInt()%50;
+        this.attackrange = 20;
+        this.hunger=hunger;
+    }
+
 
 
     public void swim(Graphics g) {

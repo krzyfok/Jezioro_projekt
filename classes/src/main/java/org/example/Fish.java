@@ -1,6 +1,7 @@
 package org.example;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Fish implements Swim{
@@ -103,9 +104,9 @@ public abstract class Fish implements Swim{
             }
     }
 
-    public int die() {
+    public int die(ArrayList table) {
         if (this.health<=0) {
-            Map.tableOfFish.remove(this);
+            table.remove(this);
             return 1;
         }
         else
@@ -132,6 +133,15 @@ public abstract class Fish implements Swim{
     public int give_size()
     {
         return size;
+    }
+    public double give_attackrange()
+    {
+        return attackrange;
+    }
+
+    public int give_health()
+    {
+        return health;
     }
 
 }

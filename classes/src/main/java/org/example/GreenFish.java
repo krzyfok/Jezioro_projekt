@@ -22,7 +22,24 @@ public class GreenFish extends Fish {
         this.position(size);
         this.dobreed=rand.nextInt()%50;
     }
+    public GreenFish(int coX, int coY, int health)
+    {
+        Random rand = new Random();
+        this.speedX = 8;
+        this.speedY=3;
+        this.size = 15;
+        this.gobackx = rand.nextBoolean();
+        this.gobacky = rand.nextBoolean();
+        this.health=health;
+        this.power=30;
+        this.agility=30;
+        this.position(size);
+        this.dobreed=rand.nextInt()%50;
 
+        this.coX=coX;
+        this.coY=coY;
+
+    }
     public void swim(Graphics g) {
 
 

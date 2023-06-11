@@ -22,6 +22,22 @@ public class Shark extends Fish {
         this.position(size);
 
     }
+    public Shark(int coX, int coY)
+    {
+        Random rand = new Random();
+
+        this.speedX = 3;
+        this.size = 100;
+        this.gobackx = rand.nextBoolean();
+        this.health=20000;
+        this.power=1050;
+        this.agility=10;
+        this.hunger=100;
+        this.attackrange=50;
+        this.coX=coX;
+        this.coY=coY;
+
+    }
 
     public void swim(Graphics g) {
 
@@ -73,7 +89,7 @@ public class Shark extends Fish {
                 return;
 
             fish.health -= this.power;
-            fish.die();
+            fish.die(Map.tableOfFish);
             this.hunger=0;
         }
 

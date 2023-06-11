@@ -20,6 +20,23 @@ public class YellowFish extends Fish {
         this.dobreed=rand.nextInt()%50;
         this.hunger=rand.nextInt()%50;
     }
+    public YellowFish(int coX, int coY, int hunger, int health)
+    {
+        Random rand = new Random();
+
+        this.speedX = 10;
+        this.speedY=10;
+        this.size = 5;
+        this.gobackx = rand.nextBoolean();
+        this.health=health;
+        this.power=50;
+        this.agility=50;
+        this.dobreed=rand.nextInt()%50;
+        this.hunger=hunger;
+        this.coX=coX;
+        this.coY=coY;
+
+    }
 
     public void swim(Graphics g) {
 

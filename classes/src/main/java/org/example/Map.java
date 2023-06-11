@@ -71,7 +71,7 @@ public class Map extends JFrame{
 
             //smierc ryb:
             for(int j=0; j<tableOfFish.size(); j++)
-                if(tableOfFish.get(j).die()==1)
+                if(tableOfFish.get(j).die(Map.tableOfFish)==1)
                     j--;
 
 
