@@ -22,6 +22,8 @@ public class GreenFish extends Fish {
         this.position(size);
         this.dobreed=rand.nextInt()%50;
     }
+    
+    //do testów:
     public GreenFish(int coX, int coY, int health)
     {
         Random rand = new Random();
@@ -40,6 +42,7 @@ public class GreenFish extends Fish {
         this.coY=coY;
 
     }
+    
     public void swim(Graphics g) {
 
 
