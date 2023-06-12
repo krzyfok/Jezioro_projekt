@@ -13,11 +13,11 @@ import java.io.File;
 
 public class Map extends JFrame{
     public static int size = 600;
-    public static int border = 10;      //tutaj ustawiam szerokosc ramki. Potem to zmienic na dodatkowo border-dolny, zeby dodac piasek
+    public static int border = 10;
     public static int upBorder = 100;   //powierzchnia
     public static int downBorder=50;
     public static int time;
-    static ArrayList<Fish> tableOfFish;      //przeniesione tutaj, zeby dzialalo jako jedna arraylista dla wszystkich rodzajow ryb
+    static ArrayList<Fish> tableOfFish;
 
     Map() {                                               //konstruktor, ustawienie wielkosci okienka
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +35,6 @@ public class Map extends JFrame{
         g.fillRect(0,size-downBorder,size, downBorder);
     }
 
-
     public static void setFish(int green, int red, int yellow, int time_) {
         tableOfFish = new ArrayList();
         tableOfFish.add(new Shark());
@@ -47,6 +46,7 @@ public class Map extends JFrame{
             tableOfFish.add(new YellowFish());
         time=time_*20;
     }
+    
     public static void data_export()
     {
         int red=0, green=0 , yellow=0;
