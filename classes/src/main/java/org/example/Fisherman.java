@@ -13,19 +13,19 @@ public class Fisherman {
 
     protected boolean goback = true;
     protected boolean stop = false;
-    protected int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc. potem mozna to zrobic randomowo
+    protected int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc
     protected int maxcountdown = 70;
 
     protected int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    protected int rodspeed = 20;             //do wedki dodac nowa klase? nw
+    protected int rodspeed = 20;
     protected int roddepth = Map.upBorder;        //aktualna glebokosc wedki
-    protected double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
+    protected double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana
 
     static int fish_caught=0;
 
 
     
-    public void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
+    public void swim(Graphics g) {
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
@@ -57,7 +57,7 @@ public class Fisherman {
 
             Random rand = new Random();         //wylosowanie glebokosci, na ktora zanurzy sie wedka
             do {
-                depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder)) + Map.upBorder;
+                depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder*2)) + Map.upBorder;
             } while (depth <= Map.upBorder + Map.border && depth >= Map.size - Map.downBorder-Map.border);
 
         }
