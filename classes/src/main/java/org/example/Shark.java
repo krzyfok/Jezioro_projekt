@@ -22,6 +22,8 @@ public class Shark extends Fish {
         this.position(size);
 
     }
+    
+    //do testów:
     public Shark(int coX, int coY)
     {
         Random rand = new Random();
