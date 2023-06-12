@@ -57,7 +57,7 @@ public class Fisherman {
 
             Random rand = new Random();         //wylosowanie glebokosci, na ktora zanurzy sie wedka
             do {
-                depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder*2)) + Map.upBorder;
+                depth = (rand.nextInt(Map.size - 2*Map.upBorder - Map.downBorder*2)) + Map.upBorder*2;
             } while (depth <= Map.upBorder + Map.border && depth >= Map.size - Map.downBorder-Map.border);
 
         }
