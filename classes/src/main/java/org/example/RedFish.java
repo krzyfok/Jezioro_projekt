@@ -7,7 +7,7 @@ public class RedFish extends Fish {
 
     private int extinction = 10;
     private int breedValue = 5;
-    private int goBack = 15;    //im mniejsze tym czesciej zawraca (w pionie)
+    private int goBack = 15;
     
     public RedFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
@@ -24,6 +24,8 @@ public class RedFish extends Fish {
         this.attackrange = 20;
         this.hunger=rand.nextInt()%50;
     }
+    
+    //do testów:
     public RedFish(int coX, int coY, int hunger, int health, int aglility)
     {
         Random rand = new Random();
