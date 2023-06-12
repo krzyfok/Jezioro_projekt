@@ -20,6 +20,8 @@ public class YellowFish extends Fish {
         this.dobreed=rand.nextInt()%50;
         this.hunger=rand.nextInt()%50;
     }
+    
+    //do testów:
     public YellowFish(int coX, int coY, int hunger, int health)
     {
         Random rand = new Random();
