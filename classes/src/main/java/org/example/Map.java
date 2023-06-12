@@ -72,6 +72,7 @@ public class Map extends JFrame{
         save.println("RYB CZERWONYCH: "+ red);
         save.println("RYB ZIELONYCH: "+ green);
         save.println("RYB ZOLTYCH: "+yellow);
+        save.println("RYBY ZLOWIONE: "+ Fisherman.fish_caught);
         save.close();
     }catch (Exception e)
              {
@@ -85,7 +86,7 @@ public class Map extends JFrame{
     @Override
     public void paint(Graphics g) {
 
-
+    Fisherman fisherman = new Fisherman();
 
         for(int i=0; i<time; i++) {
 
@@ -117,8 +118,8 @@ public class Map extends JFrame{
                     j--;
 
 
-            Fisherman.swim(g);
-            Fisherman.fishing(g, Map.tableOfFish);
+            fisherman.swim(g);
+            fisherman.fishing(g, Map.tableOfFish);
 
 
             try {

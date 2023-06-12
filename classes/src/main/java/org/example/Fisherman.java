@@ -6,31 +6,26 @@ import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.sqrt;
 public class Fisherman {
-    static int speed = 6;
-    static int coX = Map.size / 2;
-    static int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
-    static int size = 10;
+    protected int speed = 6;
+    protected int coX = Map.size / 2;
+    protected int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
+    protected int size = 10;
 
-    static boolean goback = true;
-    static boolean stop = false;
-    static int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc. potem mozna to zrobic randomowo
-    static int maxcountdown = 70;
+    protected boolean goback = true;
+    protected boolean stop = false;
+    protected int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc. potem mozna to zrobic randomowo
+    protected int maxcountdown = 70;
 
-    static int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
-    static int rodspeed = 20;             //do wedki dodac nowa klase? nw
-    static int roddepth = Map.upBorder;        //aktualna glebokosc wedki
-    static double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
+    protected int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
+    protected int rodspeed = 20;             //do wedki dodac nowa klase? nw
+    protected int roddepth = Map.upBorder;        //aktualna glebokosc wedki
+    protected double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana. potem mozna to uzaleznic od rodzaju ryby
 
-    public Fisherman(int depthrod, int cox)
-    {
-        roddepth=depthrod;
-        depth=depthrod;
-        coX=cox;
-    }
+    static int fish_caught=0;
 
 
     
-    public static void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
+    public void swim(Graphics g) {        //tu musi byc to g do rysowania. Tak jak w rybkach, mozna to podzielic na kilka metod (np 2)
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
@@ -69,11 +64,11 @@ public class Fisherman {
 
     }
 
-    static double distance(double x, double y) {
+    public double distance(double x, double y) {
         return sqrt(((x - coX) * (x - coX)) + ((y - roddepth) * (y - roddepth)));
     }
 
-    public static void fishing(Graphics g, ArrayList<Fish> table) {
+    public  void fishing(Graphics g, ArrayList<Fish> table) {
         Random rand = new Random();
         if (stop == false)
             return;
@@ -94,25 +89,26 @@ public class Fisherman {
             if (distance(fish.coX, fish.coY) <= rodrange ) {
                 if(rand.nextInt()%100>fish.agility) {
                     if (fish instanceof GreenFish) {
-                        System.out.println("Test, zlapana zielona");
+                        fish_caught++;
 
                     } else if (fish instanceof RedFish) {
-                        System.out.println("Test, zlapana czerwona");
+                        fish_caught++;
 
                     } else if (fish instanceof YellowFish) {
-                        System.out.println("Test, zlapana żółta");
+                        fish_caught++;
 
                     } else if (fish instanceof Shark) {
-                        System.out.println("DZIWNE, zlapany rekin lol");
+                        fish_caught++;
 
                     }
+                    //usuwanie ryby:
+                    table.remove(fish);
                 }
 
                 stop = false;
                 roddepth = Map.upBorder;
 
-                //usuwanie ryby:
-                table.remove(fish);
+
                 return;
             }
         }
