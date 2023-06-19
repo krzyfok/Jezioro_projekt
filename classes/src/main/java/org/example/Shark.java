@@ -4,11 +4,15 @@ package org.example;
 import java.awt.*;
 import java.util.Random;
 
-
+/**
+ * Shark pływa i zjada ryby
+ */
 public class Shark extends Fish {
 
+    /** minimalna wartość głodu potrzebna do przeprowadzenia ataku */
     private int minHunger;
-    public Shark() {  //"konstruktor pojedynczej ryby"
+    /** konstruktor pojedynczego rekina bez parametrów */
+    public Shark() {
         Random rand = new Random();
 
         this.speedX = 3;
@@ -22,25 +26,11 @@ public class Shark extends Fish {
         this.position(size);
 
     }
-    
-    //do testów:
-    public Shark(int coX, int coY)
-    {
-        Random rand = new Random();
 
-        this.speedX = 3;
-        this.size = 100;
-        this.gobackx = rand.nextBoolean();
-        this.health=20000;
-        this.power=1050;
-        this.agility=10;
-        this.hunger=100;
-        this.attackrange=50;
-        this.coX=coX;
-        this.coY=coY;
-
-    }
-
+    /**
+     * Metoda odpoweiedzialna za poruszanie się
+     * @param g odpowiada za rysowanie
+     */
     public void swim(Graphics g) {
 
 
@@ -49,7 +39,7 @@ public class Shark extends Fish {
         g.fillOval(this.coX, this.coY, this.size, this.size);
 
 
-        //poruszanie sie w osi X
+        /** ruch w osi X*/
         if(this.gobackx==true) {
             if((this.coX-this.speedX)<=(Map.border+this.size))
                 this.gobackx=false;
@@ -63,7 +53,7 @@ public class Shark extends Fish {
                 this.coX+=this.speedX;
         }
 
-        //poruszanie sie w osi Y
+        /** ruch w osi Y*/
         if(this.gobacky==true) {
             if((this.coY-this.speedX/2)<=(Map.border+this.size+Map.upBorder))
                 this.gobacky=false;
@@ -81,7 +71,10 @@ public class Shark extends Fish {
         this.hunger+=10;
     }
 
-
+    /**
+     * Metoda odpowiada za atak
+     * @param fish 2 ryba która jest atakowana przez rekina
+     */
     @Override
     public void attack(Fish fish) {
         if (distance(this, fish) <= this.attackrange) {

@@ -3,9 +3,14 @@ package org.example;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * YellowFish pływa,  podgryza silniejsze ryby i się rozmnaża
+ */
 public class YellowFish extends Fish {
 
-
+    /**
+     * Konstruktor pojendynczej ryby bez parametrów
+     */
     public YellowFish() {  //"konstruktor pojedynczej ryby"
         Random rand = new Random();
 
@@ -20,8 +25,14 @@ public class YellowFish extends Fish {
         this.dobreed=rand.nextInt()%50;
         this.hunger=rand.nextInt()%50;
     }
-    
-    //do testów:
+
+    /**
+     * Konstruktor pojedynczej ryby z parametrami początkowymi
+     * @param coX współrzędna X
+     * @param coY współrzędna Y
+     * @param hunger głód
+     * @param health punkty zdrowia
+     */
     public YellowFish(int coX, int coY, int hunger, int health)
     {
         Random rand = new Random();
@@ -40,12 +51,17 @@ public class YellowFish extends Fish {
 
     }
 
+    /**
+     * Metoda odpowiada za poruszanie się ryby
+     * @param g odpowiada za rysowanie
+     */
     public void swim(Graphics g) {
 
         Random rand = new Random();
         g.setColor(Color.yellow);
 
         g.fillOval(this.coX, this.coY, this.size, this.size);
+        /** ruch w osi X */
         if(this.coX >= Map.border && this.coX <= Map.size- Map.border-size) {
             this.coX += ((rand.nextInt(this.speedX*2))-10);
         }
@@ -57,6 +73,7 @@ public class YellowFish extends Fish {
         {
             this.coX-=this.speedX;
         }
+        /** ruch w osi Y*/
         if(this.coY >= Map.upBorder+speedY && this.coY <= Map.size- Map.downBorder-speedY) {
 
             this.coY += ((rand.nextInt(this.speedY*2))-10);

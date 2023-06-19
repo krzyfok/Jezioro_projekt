@@ -3,13 +3,23 @@ package org.example;
 
 import java.awt.*;
 import java.util.Random;
-public class RedFish extends Fish {
 
+/**
+ * RedFish pływa, atakuje słabsze ryby i się rozmnaża
+ */
+public class RedFish extends Fish {
+    /** liczba ryb przy której ryby częściej się rozmnażają */
     private int extinction = 10;
+    /** Wartość o którą zwiększany jest licznik potrzebny do rozmnażania*/
     private int breedValue = 5;
+    /** Im mniejsze tym czesciej zawraca (w pionie) */
     private int goBack = 15;
+
+    /**
+     * Konstruktor pojedynczej ryby bez parameetrów początkowych
+     */
     
-    public RedFish() {  //"konstruktor pojedynczej ryby"
+    public RedFish() {
         Random rand = new Random();
 
         this.speedX = 5;
@@ -24,8 +34,15 @@ public class RedFish extends Fish {
         this.attackrange = 20;
         this.hunger=rand.nextInt()%50;
     }
-    
-    //do testów:
+
+    /**
+     * Konstruktor pojedynczej ryby z parametrami początkowymi
+     * @param coX wspórzędna X
+     * @param coY współrzędna Y
+     * @param hunger głóg
+     * @param health punkty zdrowia
+     * @param aglility zwinność
+     */
     public RedFish(int coX, int coY, int hunger, int health, int aglility)
     {
         Random rand = new Random();
@@ -45,14 +62,19 @@ public class RedFish extends Fish {
     }
 
 
-
+    /**
+     * Metoda odpowiada za poruszanie się ryby
+     * @param g odpowaida za rysowanie
+     */
     public void swim(Graphics g) {
         Random rand =new Random();
 
         g.setColor(Color.RED);
         g.fillOval(this.coX, this.coY, this.size, this.size);
 
-        //poruszanie sie w osi X
+        /**
+         *  ruch w osi X
+         */
         if(this.gobackx==true) {
             if((this.coX-this.speedX)<=(Map.border+this.size))
                 this.gobackx=false;
@@ -66,7 +88,7 @@ public class RedFish extends Fish {
                 this.coX+=this.speedX;
         }
 
-        //poruszanie sie w osi Y
+        /** ruch w osi Y */
         if(this.gobacky==true) {
             if((this.coY-this.speedY)<=(Map.border+this.size+Map.upBorder))
                 this.gobacky=false;
@@ -80,7 +102,7 @@ public class RedFish extends Fish {
                 this.coY+=this.speedY;
         }
 
-        //randomowe zawracanie
+        /** losowa zmiana kierunku */
         if(rand.nextInt()%goBack==0)
             this.gobacky = !this.gobacky;
 

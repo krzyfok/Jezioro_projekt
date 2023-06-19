@@ -3,12 +3,20 @@ package org.example;
 
 import java.awt.*;
 import java.util.Random;
-public class GreenFish extends Fish {
 
+/**
+ * GreenFish Pływa, atakuje słabsze osobniki i się rozmnaża
+ */
+public class GreenFish extends Fish {
+    /** liczba ryb przy której ryby częściej się rozmnażają */
     private int extinction = 15;
+    /** Wartość o którą zwiększany jest licznik potrzebny do rozmnażania*/
     private int breedValue = 5;
 
-    public GreenFish() {  //"konstruktor pojedynczej ryby"
+    /**
+     * Konstruktor pojednyczej ryby bez parametrów
+     */
+    public GreenFish() {
         Random rand = new Random();
 
         this.speedX = 8;
@@ -22,8 +30,13 @@ public class GreenFish extends Fish {
         this.position(size);
         this.dobreed=rand.nextInt()%50;
     }
-    
-    //do testów:
+
+    /**
+     * Konstruktor pojedynczej ryby z parametrami początkowymi
+     * @param coX współrzędna X
+     * @param coY współrzędna Y
+     * @param health punkty zdrowia
+     */
     public GreenFish(int coX, int coY, int health)
     {
         Random rand = new Random();
@@ -42,7 +55,11 @@ public class GreenFish extends Fish {
         this.coY=coY;
 
     }
-    
+
+    /**
+     * Metoda odpwiada za poruszanie się ryby
+     * @param g odpowiada za rysowanie
+     */
     public void swim(Graphics g) {
 
 
@@ -50,7 +67,7 @@ public class GreenFish extends Fish {
         g.fillOval(this.coX, this.coY, this.size, this.size);
 
 
-        //poruszanie sie w osi X
+        /** ruch w osi X */
         if(this.gobackx==true) {
             if((this.coX-this.speedX)<=(Map.border+this.size))
                 this.gobackx=false;
@@ -64,7 +81,7 @@ public class GreenFish extends Fish {
                 this.coX+=this.speedX;
         }
 
-        //poruszanie sie w osi Y
+        /** ruch w osi Y*/
         if(this.gobacky==true) {
             if((this.coY-this.speedY)<=(Map.border+this.size+Map.upBorder))
                 this.gobacky=false;

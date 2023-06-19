@@ -5,42 +5,64 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.sqrt;
+
+/**
+ * Fisherman plywa i łowi ryby
+ */
 public class Fisherman {
+
+    /** Szybkość płynięcia rybaka    */
     protected int speed = 6;
+    /** Współrzędna X, początkowo ustawiana jako środek mapy*/
     protected int coX = Map.size / 2;
-    protected int coY = Map.upBorder - 10;    //odejmuje wysokosc lodki
+    /** Współrzędna Y rybaka, górna granica mapa minus wysokość łódki*/
+    protected int coY = Map.upBorder - 10;
+    /** Rozmiar łódki rybaka */
     protected int size = 10;
-
+    /** Kierunek poruszania rybaka */
     protected boolean goback = true;
+    /** Zatrzyamnie rybaka */
     protected boolean stop = false;
-    protected int stopcountdown = 0;                      //zeby sie zatrzymywal co jakas wartosc
+    /** licznik do zatrzyamnia rybaka */
+    protected int stopcountdown = 0;
+    /** wartośc przy której rybak się zatrzymuje */
     protected int maxcountdown = 70;
-
-    protected int depth;                         //wskazuje do jakiej glebokosci zanurzy sie lodka
+    /** wskazuje do jakiej glebokosci zanurzy sie wędka */
+    protected int depth;
+    /** szybkość zanurzania wędki */
     protected int rodspeed = 20;
-    protected int roddepth = Map.upBorder;        //aktualna glebokosc wedki
-    protected double rodrange = 5;                 //w jakiej odleglosci od wedki ryba zostaje zlapana
-
+    /** aktualna głębokość wędki */
+    protected int roddepth = Map.upBorder;
+    /** zasięg wędki */
+    protected double rodrange = 5;
+    /** licznik ryb złapanych */
     static int fish_caught=0;
 
 
-    
+    /**
+     * Metoda przeprowadza pływanie ryb
+     * @param g odpowiada za rysowanie
+     */
     public void swim(Graphics g) {
 
         //rysowanie lodki
         g.setColor(Color.ORANGE);
         g.fillRect(coX, coY, size*5, size);
-
-        if (stop == true)             //jesli jest zatrzymany to sie nie porusza
+        /**
+         * Jeżeli rybak został zatrzymany to się nie będzie poruszać
+         */
+        if (stop == true)
             return;
 
-        //poruszanie sie:
-        if (coX >= Map.border && coX <= Map.size - 2 * Map.border - size*5) {      //odejmuje dlugosc lodki
+        /**
+         * Poruszanie się rybaka
+         */
+        if (coX >= Map.border && coX <= Map.size - 2 * Map.border - size*5) {
             if (goback == true)
                 coX += speed;
             else
                 coX -= speed;
-        } else {                                              //tutaj rybak zawraca gdy spotka krawedz
+        } else {
             if (goback == true) {
                 goback = false;
                 coX -= speed;
@@ -49,42 +71,68 @@ public class Fisherman {
                 coX += speed;
             }
         }
-        stopcountdown++;                       //zwiekszanie licznika, gdy rybak sie porusza
-
-        if (stopcountdown >= maxcountdown) {                //zatrzymuje sie co x klatek
+        /**
+         * Zwiększanie licznika gdy rybak się porusza
+         */
+        stopcountdown++;
+        /**
+         * Gdy licznik będzie mieć określoną wartość rybak się zatrzymuje
+         */
+        if (stopcountdown >= maxcountdown) {
             stopcountdown = 0;
             stop = true;
-
-            Random rand = new Random();         //wylosowanie glebokosci, na ktora zanurzy sie wedka
+            /**
+             * Losowanie glębokości na której zanurzy się wędka
+             */
+            Random rand = new Random();
             do {
-                depth = (rand.nextInt(Map.size - 2*Map.upBorder - Map.downBorder*2)) + Map.upBorder*2;
+                depth = (rand.nextInt(Map.size - Map.upBorder - Map.downBorder)) + Map.upBorder;
             } while (depth <= Map.upBorder + Map.border && depth >= Map.size - Map.downBorder-Map.border);
 
         }
 
     }
 
+    /**
+     * Metoda liczy odległość między wędką a rybą
+     * @param x współrzędna X ryby
+     * @param y współrzędna Y ryby
+     * @return zwraca odległość
+     */
     public double distance(double x, double y) {
         return sqrt(((x - coX) * (x - coX)) + ((y - roddepth) * (y - roddepth)));
     }
 
+    /**
+     * Metoda odpowiada za operacje łowienia
+     * @param g odpowiada za rysowanie wędki
+     * @param table tabela ryb łowionych
+     */
     public  void fishing(Graphics g, ArrayList<Fish> table) {
         Random rand = new Random();
         if (stop == false)
             return;
 
-        //zanurzanie:
+        /**
+         * Zanurzanie wędki
+         */
         if (roddepth < depth)
             roddepth += rodspeed;
 
-        //rysowanie wedki:
+        /**
+         * Rysowanie wędki
+         */
         g.setColor(Color.BLACK);
         g.drawLine(coX, Map.upBorder, coX, roddepth);
 
-        //jesli nie jest w pelni zanurzone to ryby nie beda sie lapac
+        /**
+         * Sprawdzanie czy wędka jest w płeni zanurzona
+         */
         if (roddepth < depth)
             return;
-
+        /**
+        * łowienie
+        */
         for (Fish fish : table) {
             if (distance(fish.coX, fish.coY) <= rodrange ) {
                 if(rand.nextInt()%100>fish.agility) {
@@ -101,7 +149,9 @@ public class Fisherman {
                         fish_caught++;
 
                     }
-                    //usuwanie ryby:
+                    /**
+                     * Usuwanie złapanych ryb
+                     */
                     table.remove(fish);
                 }
 

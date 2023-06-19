@@ -9,21 +9,40 @@ import java.util.Random;
 
 import static java.lang.Math.sqrt;
 
-
+/**
+ * Testy jednostkowe
+ */
 public class UnitTest{
     Random rand = new Random();
     static ArrayList<Fish> table;
+
+    /**
+     * Metoda sprawdza czy ryba jest w granicach mapy
+     * @param x współrzędna X ryby
+     * @param y współrzędna Y ryby
+     * @param size rozmiar ryby
+     * @return zwracana odległość
+     */
     static boolean postion(int x, int y, int size)
     {
         if(x>=Map.border+size && x<=Map.size-Map.border-size && y>=Map.upBorder+Map.border && y<=Map.size-Map.downBorder-Map.border-size) return true;
         else return false;
     }
+
+    /**
+     * Metoda zwraca odległość między dwoma rybami
+     * @param fish1 1 ryba
+     * @param fish2 2 ryba
+     * @return zwracana odległość
+     */
     static public double distance(Fish fish1, Fish fish2) {
         return (Math.sqrt((fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)*(fish1.give_coX()+fish1.give_size()/2-fish2.give_coX()-fish2.give_size()/2)+(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_size()/2)*(fish1.give_coY()+fish1.give_size()/2-fish2.give_coY()-fish2.give_size()/2)));
     }
 
 
-
+    /**
+     * Test sprawdza czy ryba tworzona jest w granicy mapy
+     */
     @RepeatedTest(10)
     void test_postion()
     {
@@ -32,6 +51,9 @@ public class UnitTest{
 
     }
 
+    /**
+     * Test sprawdza czy akcja ataku jest prawidłowo przeprowadzana
+     */
     @RepeatedTest(10)
     void test_attack()
     {
@@ -49,6 +71,10 @@ public class UnitTest{
         }
 
     }
+
+    /**
+     * Test sprawdza czy ryby prawidłowo umierają
+     */
     @RepeatedTest(10)
     void test_die()
     {
